@@ -1,0 +1,29 @@
+.nav-color {
+    background-color: #000;
+}
+
+.homeLink {
+    font-family: "Roboto Mono";
+    
+}
+
+.game-card {
+    max-width: 100%;
+  height: 100%;
+  width: auto;
+
+  display: block;
+  margin: 0 auto;
+}
+
+
+.game-list {
+ justify-self: center;
+  height: 12rem;
+  width: auto;
+}
+/* #main {
+    background-image: url(../images/casey-horner-0D8_tYHIy0o-unsplash.jpg);
+    background-size: cover;
+    
+} */
