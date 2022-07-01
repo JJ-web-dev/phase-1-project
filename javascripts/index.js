@@ -1,5 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     fetchGames()
+   
 
     loadHome()
     homeLink()
@@ -8,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 })
 
 /** Global Variables */
-let gameDataOnSale = []
+let uniqueOnSaleGames = []
 
 
 
@@ -42,7 +43,7 @@ function loadHome() {
     main().appendChild(h1)
     main().appendChild(ul)
 
-    gameDataOnSale.map(g => {
+    uniqueOnSaleGames.map(g => {
         if (g.dealRating >= 9.8) {
             const li = document.createElement('li')
             li.className = 'game-container'
@@ -98,7 +99,8 @@ function fetchGames() {
     fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
         .then(res => res.json())
         .then(res => {
-            gameDataOnSale = res
+           
+           filterUniqueGames(res)
         })
 
 }
@@ -107,6 +109,20 @@ function fetchGames() {
 
 
 /**Fetch manipulation */
+function filterUniqueGames(res){
+    
+    const uniqueId = new Set() 
+    const unique = res.filter(game => {
+     const isDuplicate = uniqueId.has(game.gameID)
+     uniqueId.add(game.gameID)
+
+     if(!isDuplicate){
+         return true
+     }
+     return false
+    })
+ uniqueOnSaleGames = unique
+}
 
 
 
