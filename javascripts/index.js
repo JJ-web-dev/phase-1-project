@@ -1,10 +1,9 @@
-
+document.addEventListener('DOMContentLoaded', function() {
+    loadHome()
+})
 
 
 /** Event Listeners */
-let clickEvent = () => document.addEventListener('click', e => {
-    e.target
-})
 
 
 
@@ -15,28 +14,53 @@ let storeDeals = () => document.getElementById('store-deals')
 
 /**Navbar Functions */
 
+// Resets all divs on navigation
+const divReset = () => {
+    main().innerHTML = ''
+    storeDeals().innerHTML = ''
+}
+
+
+// Home screen load 
 function loadHome() {
-    // main().innerHTML = ''
+    divReset()
     let h1 = document.createElement('h1')
     h1.textContent = "Deals of the Day!"
     h1.className = 'center-align'
-    main().append(h1)
+    const ul = document.createElement('ul')
+    ul.className = '.game-grid'
+    main().appendChild(h1)
+    main().appendChild(ul)
+    
 }
 
 
 
 function homeLink(){
-    const homeLink = document.querySelector('.homeLink')
-    homeLink.addEventListener('click', loadHome())
+    const homeLink = document.querySelector('.home-link')
+    homeLink.addEventListener('click', loadHome)
     }
     
 
-
 homeLink()
 
-function loadStoreDeals(){
 
+function loadDealsByStore(){
+    divReset()
+    let h1 = document.createElement('h1')
+    h1.textContent = "Shop By Store"
+    h1.className = 'center-align'
+    storeDeals().appendChild(h1)
 }
+
+function dealsByStoreLink(){
+    const dealsByStoreLink = document.querySelector('.deals-by-store')
+    dealsByStoreLink.addEventListener('click', loadDealsByStore)
+}
+
+dealsByStoreLink()
+
+
 
 /**Fetch Functions */
 
@@ -44,48 +68,49 @@ function fetchGames(){
     fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
         .then(res => res.json())
         .then(res => {
+           res.map(g => {
+            if(g.dealRating >= 9.8) {
+                gameOnHome(g)
+                // .forEach(game => gameOnHome(game))
+            }
+           } )
            
-            res.forEach(game => {
-                gameOnDom(game)
-            })
         })
     
 }
-fetchGames()
+// fetchGames()
 
 
-/**Fetch data to DOM Functoins */
+/**Fetch manipulation */
+ 
+ 
+ 
+ /**Data to DOM Functions */
 
-function gameOnDom(game) {
-    const gameCollectionDiv = document.getElementById('game-list')
-    let div = document.createElement('div')
-    div.className = 'games'
-    let gameCollection = gameCollectionDiv.append(div)
-    let table = document.createElement('table')
-    let tableRow = document.createElement('tableRow')
-    let gameTable = gameCollection.append(table)
+function gameOnHome(game) {
+
+    const gameCollectionUl = document.querySelector('.game-grid')
+    const li = document.createElement('li')
+    li.className = 'game-container'
+    gameCollectionUl.append(li)
+
     
     
+    
 
 
-    // let h3 = document.createElement('h3')
-    // h3.textContent = toy.name
+   
     let img = document.createElement('img')
+    img.className = 'homeGameImg'
     
-    img.src = game.thumb
+    // img.src = game.thumb
 
-    // img.className = 'toy-avatar'
-    // let p = document.createElement('p')
-    // p.textContent = `${toy.likes} likes`
-    // p.id = toy.id
-    // let btn = document.createElement('button')
-    // btn.classList.add('like-btn')
-    // btn.textContent = 'like'
-    // btn.id = toy.id
-    table.append(img)
+    
+    // gameList.append(img)
    
   }
 
+// gameOnHome()
 
 
 

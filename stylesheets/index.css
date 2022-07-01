@@ -7,20 +7,32 @@
     
 }
 
-.game-card {
-    max-width: 100%;
-  height: 100%;
-  width: auto;
-
-  display: block;
-  margin: 0 auto;
+#game-list {
+    display: block
 }
 
+.game-grid {
+    box-sizing: border-box;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 50px;
+    height: 60vh;
+    border: 3px solid white;
 
-.game-list {
- justify-self: center;
-  height: 12rem;
-  width: auto;
+}
+
+.game-container {
+ object-fit: contain;
+ width: 200px;
+ height: 300px;
+ background-color: #000;
+}
+
+.homeGameImg {
+    width: 200px;
+    height: 300px;
+    object-fit: contain !important;
 }
 /* #main {
     background-image: url(../images/casey-horner-0D8_tYHIy0o-unsplash.jpg);

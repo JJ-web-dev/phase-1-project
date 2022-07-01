@@ -19,11 +19,11 @@ MVP
 Home Page (come up with a better title)
 Navigation
 Deals by Store
-Wishlist - Needs a delete button
+Wishlist - Needs a delete button - json server data
 
 Stretch
 icon rating by user on game
-    -hover over show text for rating scale
+    -hover over show text for rating scale, text with graphic, text with game title
 written review posted on game
 
 
