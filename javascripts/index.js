@@ -1,6 +1,15 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
+    fetchGames()
+
     loadHome()
+    homeLink()
+    dealsByStoreLink()
+
 })
+
+/** Global Variables */
+let gameDataOnSale = []
+
 
 
 /** Event Listeners */
@@ -10,6 +19,7 @@ document.addEventListener('DOMContentLoaded', function() {
 /**Node Getters */
 let main = () => document.getElementById('main')
 let storeDeals = () => document.getElementById('store-deals')
+let gameGrid = () => document.getElementById('game-grid')
 
 
 /**Navbar Functions */
@@ -28,24 +38,45 @@ function loadHome() {
     h1.textContent = "Deals of the Day!"
     h1.className = 'center-align'
     const ul = document.createElement('ul')
-    ul.className = '.game-grid'
+    ul.id = 'game-grid'
     main().appendChild(h1)
     main().appendChild(ul)
-    
+
+    gameDataOnSale.map(g => {
+        if (g.dealRating >= 9.8) {
+            const li = document.createElement('li')
+            li.className = 'game-container'
+            li.innerText = g.dealRating
+            let img = document.createElement('img')
+            img.className = 'homeGameImg'
+            img.src = g.thumb
+            ul.appendChild(li)
+            li.appendChild(img)
+
+        }
+
+
+
+
+    })
 }
 
 
 
-function homeLink(){
+
+
+
+
+function homeLink() {
     const homeLink = document.querySelector('.home-link')
     homeLink.addEventListener('click', loadHome)
-    }
-    
-
-homeLink()
+}
 
 
-function loadDealsByStore(){
+
+
+
+function loadDealsByStore() {
     divReset()
     let h1 = document.createElement('h1')
     h1.textContent = "Shop By Store"
@@ -53,70 +84,30 @@ function loadDealsByStore(){
     storeDeals().appendChild(h1)
 }
 
-function dealsByStoreLink(){
+function dealsByStoreLink() {
     const dealsByStoreLink = document.querySelector('.deals-by-store')
     dealsByStoreLink.addEventListener('click', loadDealsByStore)
 }
 
-dealsByStoreLink()
 
 
 
 /**Fetch Functions */
 
-function fetchGames(){
+function fetchGames() {
     fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
         .then(res => res.json())
         .then(res => {
-           res.map(g => {
-            if(g.dealRating >= 9.8) {
-                gameOnHome(g)
-                // .forEach(game => gameOnHome(game))
-            }
-           } )
-           
+            gameDataOnSale = res
         })
-    
+
 }
-// fetchGames()
+
+
 
 
 /**Fetch manipulation */
- 
- 
- 
- /**Data to DOM Functions */
-
-function gameOnHome(game) {
-
-    const gameCollectionUl = document.querySelector('.game-grid')
-    const li = document.createElement('li')
-    li.className = 'game-container'
-    gameCollectionUl.append(li)
-
-    
-    
-    
-
-
-   
-    let img = document.createElement('img')
-    img.className = 'homeGameImg'
-    
-    // img.src = game.thumb
-
-    
-    // gameList.append(img)
-   
-  }
-
-// gameOnHome()
 
 
 
-
-
-
-
-
-
+/**Data to DOM Functions */

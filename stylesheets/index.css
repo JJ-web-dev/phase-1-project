@@ -11,7 +11,7 @@
     display: block
 }
 
-.game-grid {
+#game-grid {
     box-sizing: border-box;
     width: 100%;
     display: grid;
@@ -26,7 +26,7 @@
  object-fit: contain;
  width: 200px;
  height: 300px;
- background-color: #000;
+ /* background-color: #000; */
 }
 
 .homeGameImg {
