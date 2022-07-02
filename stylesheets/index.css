@@ -15,27 +15,30 @@
     box-sizing: border-box;
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(8, 1fr);
     grid-gap: 50px;
-    height: 60vh;
+    height: 50vh;
     border: 3px solid white;
 
 }
 
 .game-container {
+ display: flex;
+ position: relative;
+ flex-direction: column;
  object-fit: contain;
- width: 200px;
- height: 300px;
- /* background-color: #000; */
+ width: 100px;
+ height: 250px;
+ /* color: white;
+ background-color: #000; */
 }
 
 .homeGameImg {
-    width: 200px;
-    height: 300px;
+    width: 100px;
+    height: 250px;
     object-fit: contain !important;
 }
-/* #main {
-    background-image: url(../images/casey-horner-0D8_tYHIy0o-unsplash.jpg);
-    background-size: cover;
-    
-} */
+
+span {
+    object-fit: contain;
+}
