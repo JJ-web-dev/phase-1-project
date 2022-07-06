@@ -1,8 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-    fetchOnSaleGames()
     loadHome()
     homeLink()
     dealsByStoreLink()
+    // postWishlistGame()
+    // mousePointerChange()
 
 })
 
@@ -20,6 +21,15 @@ function homeLink() {
 function dealsByStoreLink() {
     const dealsByStoreLink = document.querySelector('.deals-by-store')
     dealsByStoreLink.addEventListener('click', loadDealsByStore)
+}
+
+function mousePointerChange() {
+
+    const mousePointer = document.querySelector('#game-grid')
+    console.log(mousePointer)
+    mousePointer.addEventListener('mouseover', function (e) {
+        e.target.style.color = 'orange';
+    })
 }
 
 /**Node Getters */
@@ -43,7 +53,7 @@ function loadHome() {
     h1.textContent = "Deals of the Day!"
     h1.className = 'center-align'
     main().appendChild(h1)
-    fetchOnSaleGames()
+    filterUniqueGames()
 
 }
 
@@ -56,13 +66,24 @@ function loadDealsByStore() {
     storeDeals().appendChild(h1)
 }
 
+//function loadWishList(){
+
+// }
+
+
+
 /**Fetch Functions */
 async function fetchOnSaleGames() {
     const response = await fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
     const data = await response.json()
 
-    // filterUniqueGames(data) 
-    //value of the new Set() can only occur once will, delete repeats
+    return data
+
+}
+
+async function filterUniqueGames() {
+    const data = await fetchOnSaleGames()
+  
     const uniqueId = new Set()
     const uniqueGames = data.filter(game => {
         const isDuplicate = uniqueId.has(game.gameID)
@@ -74,6 +95,12 @@ async function fetchOnSaleGames() {
         return false
     });
 
+    gameOnDom(uniqueGames)
+    
+
+}
+
+function gameOnDom(uniqueGames) {
     const div = document.createElement('div')
     div.id = 'home-games'
     main().appendChild(div)
@@ -86,23 +113,51 @@ async function fetchOnSaleGames() {
             const li = document.createElement('li')
             li.className = 'game-container'
             li.innerText = `${g.title}`
-            const pSalePrice = document.createElement('p')
-            pSalePrice.innerText = `Sale Price ${g.salePrice}`
+            const spanSalePrice = document.createElement('span')
+            spanSalePrice.innerText = `Sale Price ${g.salePrice}`
             const spanNormalPrice = document.createElement('span')
             spanNormalPrice.innerText = `Normal Price ${g.normalPrice}`
             const img = document.createElement('img')
             img.className = 'homeGameImg'
             img.src = g.thumb
+            const addWishlist = document.createElement('span')
+            addWishlist.className = 'add-to-wishlist'
+            addWishlist.innerText = 'Add to Wishlist'
             ul.appendChild(li)
-            li.appendChild(img)
-            li.appendChild(spanNormalPrice)
-            li.appendChild(pSalePrice)
+            li.appendChild(img, spanNormalPrice, spanSalePrice, addWishlist)
+            
 
         }
-
     })
+}
 
+// This function needs to copy the game object
+// Can I attach game id to wishlist and post game obejct by id to json
+// click on addtoWishlist and fetch game object by id
+// then post game object to json
+function postWishlistGame(){
+    const addWishListEvent = document.querySelector('.add-to-wishlist')
+    addWishListEvent.addEventListener('click', e => {
+        e.preventDefault()
+        console.log(addWishListEvent)
+        const [name, image] = e.target
 
+        fetch('http://localhost:3000/wishList', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                name: title.value,
+                image: thumb.value
+            })
+        })
+    })
+    .then((res => res.json))
+    .then(res => {
+        console.log(res)
+    })
 }
 
 /**Fetch data manipulation */
