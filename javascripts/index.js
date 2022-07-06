@@ -2,7 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
     loadHome()
     homeLink()
     dealsByStoreLink()
-    // postWishlistGame()
+    setTimeout(postWishlistGame, 4000)
     // mousePointerChange()
 
 })
@@ -35,6 +35,7 @@ function mousePointerChange() {
 /**Node Getters */
 let main = () => document.getElementById('main')
 let storeDeals = () => document.getElementById('store-deals')
+let wishlist = () => document.getElementById('wishlist')
 let homeGames = () => document.getElementById('home-games')
 
 
@@ -53,7 +54,8 @@ function loadHome() {
     h1.textContent = "Deals of the Day!"
     h1.className = 'center-align'
     main().appendChild(h1)
-    filterUniqueGames()
+    // filterUniqueGames()
+    fetchOnSaleGames()
 
 }
 
@@ -66,8 +68,12 @@ function loadDealsByStore() {
     storeDeals().appendChild(h1)
 }
 
-//function loadWishList(){
-
+// function loadWishList(){
+//     divReset()
+//     let h1 = document.createElement('h1')
+//     h1.textContent = 'WishList'
+//     wishlist().appendChild(h1)
+    
 // }
 
 
@@ -77,13 +83,17 @@ async function fetchOnSaleGames() {
     const response = await fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
     const data = await response.json()
 
-    return data
+    const games = await filterUniqueGames(data)
+    gameOnDom(games)
+    // postWishlistGame() 
+    // return data
 
 }
 
-async function filterUniqueGames() {
-    const data = await fetchOnSaleGames()
-  
+// filters the onSaleGames so no repeat games are rendered
+function filterUniqueGames(data) {
+    // const data = await fetchOnSaleGames()
+
     const uniqueId = new Set()
     const uniqueGames = data.filter(game => {
         const isDuplicate = uniqueId.has(game.gameID)
@@ -95,12 +105,23 @@ async function filterUniqueGames() {
         return false
     });
 
-    gameOnDom(uniqueGames)
+    return uniqueGames
+
+    // gameOnDom(uniqueGames)
     
+    // postWishlistGame()
+
 
 }
 
+async function games(){
+    const data = await filterUniqueGames()
+    gameOnDom(data)
+}
+
+//adds games to the homepage DOM
 function gameOnDom(uniqueGames) {
+    // console.log(uniqueGames)
     const div = document.createElement('div')
     div.id = 'home-games'
     main().appendChild(div)
@@ -122,42 +143,69 @@ function gameOnDom(uniqueGames) {
             img.src = g.thumb
             const addWishlist = document.createElement('span')
             addWishlist.className = 'add-to-wishlist'
+            addWishlist.id = g.gameID
             addWishlist.innerText = 'Add to Wishlist'
             ul.appendChild(li)
-            li.appendChild(img, spanNormalPrice, spanSalePrice, addWishlist)
-            
+            li.append(img, spanNormalPrice, spanSalePrice, addWishlist)
+
 
         }
     })
 }
 
-// This function needs to copy the game object
-// Can I attach game id to wishlist and post game obejct by id to json
-// click on addtoWishlist and fetch game object by id
-// then post game object to json
-function postWishlistGame(){
-    const addWishListEvent = document.querySelector('.add-to-wishlist')
-    addWishListEvent.addEventListener('click', e => {
-        e.preventDefault()
-        console.log(addWishListEvent)
-        const [name, image] = e.target
+//Need to add alert once successful post is made
+function postWishlistGame() {
 
-        fetch('http://localhost:3000/wishList', {
-            method: 'POST',
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json"
-            },
-            body: JSON.stringify({
-                name: title.value,
-                image: thumb.value
+    const addWishListEvent = document.querySelectorAll('.add-to-wishlist')
+    
+    addWishListEvent.forEach(item => item.addEventListener('click', e => {
+                
+               const gameID = e.target.id
+              
+        
+        fetch(`https://www.cheapshark.com/api/1.0/games?id=${gameID}`)
+            .then(response => response.json())
+            .then(response => {
+                const game = response
+                console.log(game)
+
+                fetch('http://localhost:3000/posts', {
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json",
+                        Accept: "application/json"
+                    },
+                    body: JSON.stringify(game)
+
+
+                })
             })
-        })
-    })
-    .then((res => res.json))
-    .then(res => {
-        console.log(res)
-    })
+    }))
 }
+
+
+
+//     e.preventDefault()
+//     console.log(addWishListEvent)
+//     const [name, image] = e.target
+
+//     fetch('http://localhost:3000/wishList', {
+//         method: 'POST',
+//         headers: {
+//             "Content-Type": "application/json",
+//             Accept: "application/json"
+//         },
+//         body: JSON.stringify({
+//             name: title.value,
+//             image: thumb.value
+//         })
+//     })
+// })
+// .then((res => res.json))
+// .then(res => {
+//     console.log(res)
+// })
+
+
 
 /**Fetch data manipulation */
