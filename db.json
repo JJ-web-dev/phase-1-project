@@ -2,6 +2,30 @@
   "posts": [
     {
       "id": 0
+    },
+    {
+      "title": "Killing Floor 2",
+      "steamAppID": "232090",
+      "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/232090/capsule_sm_120.jpg?t=1655328266",
+      "id": 1
+    },
+    {
+      "title": "The Crew 2 Gold Edition",
+      "steamAppID": null,
+      "thumb": "https://gamersgatep.imgix.net/7/2/c/a881754019c34df731be02e6d2e1b72584e02c27.jpg?auto=&w=",
+      "id": 2
+    },
+    {
+      "title": "XCOM 2 Collection",
+      "steamAppID": null,
+      "thumb": "https://gamersgatep.imgix.net/a/4/2/3e624ed2a18d7d04afc30547cdd5dbb86795624a.jpg?auto=&w=",
+      "id": 3
+    },
+    {
+      "title": "Sid Meiers Civilization VI Anthology",
+      "steamAppID": null,
+      "thumb": "https://gamersgatep.imgix.net/0/e/3/964b0e3328eb6a250e05f11e4097bb171c4153e0.jpg?auto=&w=",
+      "id": 4
     }
   ]
 }
