@@ -5,62 +5,6 @@
     },
     {
       "info": {
-        "title": "Ancient Enemy",
-        "steamAppID": "993790",
-        "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/993790/capsule_sm_120.jpg?t=1628510098"
-      },
-      "cheapestPriceEver": {
-        "price": "3.00",
-        "date": 1654818602
-      },
-      "deals": [
-        {
-          "storeID": "25",
-          "dealID": "SYK0IZ58tuNnzERn%2FmpPZas6Wzt2omY%2FC8%2BiIFLUkxk%3D",
-          "price": "0.00",
-          "retailPrice": "14.99",
-          "savings": "100.000000"
-        },
-        {
-          "storeID": "15",
-          "dealID": "BD8MpcddPSzcJguLzneljyifqAv0UAR6n4KWyLMmlKo%3D",
-          "price": "11.01",
-          "retailPrice": "14.99",
-          "savings": "26.551034"
-        },
-        {
-          "storeID": "3",
-          "dealID": "Atf%2F3k5j2Hv4sj%2B17DFl59U9V70dCz0TN23yjcHrXQg%3D",
-          "price": "14.99",
-          "retailPrice": "14.99",
-          "savings": "0.000000"
-        },
-        {
-          "storeID": "1",
-          "dealID": "poWzeVjK%2B3wLTT7Jyp12nh%2B939aXz36%2FhZaFUthp8%2Fc%3D",
-          "price": "14.99",
-          "retailPrice": "14.99",
-          "savings": "0.000000"
-        },
-        {
-          "storeID": "11",
-          "dealID": "nx8AXGVLNIEZ1EsVVyY023F%2BRGr56sr8bvGPt1WH3xE%3D",
-          "price": "14.99",
-          "retailPrice": "14.99",
-          "savings": "0.000000"
-        },
-        {
-          "storeID": "7",
-          "dealID": "2cmeIR3yZ0mvpH5zDvjqOwdIO%2FkG1rnoW%2BN73YyO80A%3D",
-          "price": "14.99",
-          "retailPrice": "14.99",
-          "savings": "0.000000"
-        }
-      ],
-      "id": 1
-    },
-    {
-      "info": {
         "title": "Killing Floor 2",
         "steamAppID": "232090",
         "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/232090/capsule_sm_120.jpg?t=1655328266"
@@ -80,9 +24,9 @@
         {
           "storeID": "21",
           "dealID": "4bmTbeTz6dpFRqREBfrRvNCkUSHOWvFNYoVhzEc1D8Y%3D",
-          "price": "7.49",
+          "price": "5.99",
           "retailPrice": "29.99",
-          "savings": "75.025008"
+          "savings": "80.026676"
         },
         {
           "storeID": "23",
@@ -183,7 +127,161 @@
           "savings": "0.000000"
         }
       ],
+      "id": 1
+    },
+    {
+      "info": {
+        "title": "Ancient Enemy",
+        "steamAppID": "993790",
+        "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/993790/capsule_sm_120.jpg?t=1628510098"
+      },
+      "cheapestPriceEver": {
+        "price": "3.00",
+        "date": 1654818602
+      },
+      "deals": [
+        {
+          "storeID": "25",
+          "dealID": "SYK0IZ58tuNnzERn%2FmpPZas6Wzt2omY%2FC8%2BiIFLUkxk%3D",
+          "price": "0.00",
+          "retailPrice": "14.99",
+          "savings": "100.000000"
+        },
+        {
+          "storeID": "15",
+          "dealID": "BD8MpcddPSzcJguLzneljyifqAv0UAR6n4KWyLMmlKo%3D",
+          "price": "11.01",
+          "retailPrice": "14.99",
+          "savings": "26.551034"
+        },
+        {
+          "storeID": "3",
+          "dealID": "Atf%2F3k5j2Hv4sj%2B17DFl59U9V70dCz0TN23yjcHrXQg%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "1",
+          "dealID": "poWzeVjK%2B3wLTT7Jyp12nh%2B939aXz36%2FhZaFUthp8%2Fc%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "11",
+          "dealID": "nx8AXGVLNIEZ1EsVVyY023F%2BRGr56sr8bvGPt1WH3xE%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "7",
+          "dealID": "2cmeIR3yZ0mvpH5zDvjqOwdIO%2FkG1rnoW%2BN73YyO80A%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        }
+      ],
       "id": 2
+    },
+    {
+      "info": {
+        "title": "XCOM: Ultimate Collection",
+        "steamAppID": null,
+        "thumb": "https://gamersgatep.imgix.net/f/a/d/67cf6dde8c1d76931886fedcb03d078ef775cdaf.jpg?auto=&w="
+      },
+      "cheapestPriceEver": {
+        "price": "11.91",
+        "date": 1617315938
+      },
+      "deals": [
+        {
+          "storeID": "23",
+          "dealID": "RdTbnfxjbPgSZJ%2Fi%2BibOa9cwLng0aGCcKUws2MdngN4%3D",
+          "price": "14.29",
+          "retailPrice": "148.99",
+          "savings": "90.408752"
+        },
+        {
+          "storeID": "27",
+          "dealID": "lAqDcZqGvc04dh7BWd23tQiE4ctBQQkK1VQgBezv%2B4U%3D",
+          "price": "15.24",
+          "retailPrice": "148.99",
+          "savings": "89.771126"
+        },
+        {
+          "storeID": "30",
+          "dealID": "%2BW%2BnREJ4qoOhnjO8OGMloDPj7oYSaNWleohsb0P%2FC28%3D",
+          "price": "15.49",
+          "retailPrice": "148.99",
+          "savings": "89.603329"
+        },
+        {
+          "storeID": "15",
+          "dealID": "xGeAL8yNY1U%2Fv8a2g49RMF%2Fc%2FeWnSs1zpmzUI886UtA%3D",
+          "price": "15.64",
+          "retailPrice": "148.99",
+          "savings": "89.502651"
+        },
+        {
+          "storeID": "32",
+          "dealID": "mZdCqqXPQz61iQsXRzMdz1gWi0ql3NDjc%2BqqnN449Cw%3D",
+          "price": "15.94",
+          "retailPrice": "148.99",
+          "savings": "89.301295"
+        },
+        {
+          "storeID": "2",
+          "dealID": "K8MuyoY9S4bJ0tKsJ4TsP8rl%2BNchrfkQmsiC8371AYc%3D",
+          "price": "16.38",
+          "retailPrice": "148.99",
+          "savings": "89.005974"
+        },
+        {
+          "storeID": "21",
+          "dealID": "dfgm7ZmRGyYKrbaqm6CC%2Fl%2F6Z1ZfJSvdHUQyy1AY0pk%3D",
+          "price": "128.99",
+          "retailPrice": "148.88",
+          "savings": "13.359753"
+        },
+        {
+          "storeID": "11",
+          "dealID": "EqJkkYC8Ibuh7UWkMABck1ZWEMOEgWBP9uyHhh2sj7o%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "24",
+          "dealID": "mHKfC39DtOU6X2kThGirctuzpSCWGE6TiMslHs%2BF930%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "3",
+          "dealID": "3OxqgIDTOwl6bHrwINy3te%2FjcHM5bu8%2BnKn2V7jmYHQ%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "28",
+          "dealID": "469MKhczdRGPJEj4tQKjUVyslNdT87wnhgiPljfTYp4%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "29",
+          "dealID": "TechRbygfmZAt2odqPS4FYEt2%2FDqDWSgUphGqeUNsBQ%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        }
+      ],
+      "id": 3
     }
   ]
 }

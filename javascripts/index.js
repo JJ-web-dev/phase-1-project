@@ -34,12 +34,12 @@ function mousePointerChange() {
     
     mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
         e.target.style.cursor = 'pointer'
-        // e.target.style.color = 'red'
+        
     }))
     const mouseOut = document.querySelectorAll('.add-to-wishlist')
     mouseOut.forEach(item => item.addEventListener('mouseout', function (e) {
         e.target.style.cursor = 'default'
-        // e.target.style.color = 'black'
+       
         
     }))
 }
@@ -103,8 +103,11 @@ sets games based on rating to be rendered pn home
 async function fetchOnSaleGames() {
     const response = await fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
     const data = await response.json()
-
-    const games = await filterUniqueGames(data)
+    const filteredBrokenData = data.filter(item => {
+        return item.gameID !== '223187' 
+    })
+    
+    const games = await filterUniqueGames(filteredBrokenData)
 
     const filterGames = filterGameDeals(games)
 
@@ -124,6 +127,7 @@ function filterGameDeals(game) {
 }
 
 //Need to add alert once successful post is made
+//Posts game from home page to the wishlist page
 function postWishlistGame() {
 
     const addWishListEvent = document.querySelectorAll('.add-to-wishlist')
@@ -155,6 +159,7 @@ function postWishlistGame() {
     }))
 }
 
+//This function deletes games from the wishlist page and json server
 function deleteWishlistGame(){
     const deleteBtn = document.querySelectorAll('.wishlist-delete-btn')
     
@@ -179,7 +184,7 @@ async function wishlistGamesToDOM() {
     const response = await fetch('http://localhost:3000/posts')
     const wishlistData = await response.json()
     
-    // console.log(wishlistData)
+    
    
     const div = document.createElement('div')
     div.id = 'wishlist-games'
@@ -190,8 +195,10 @@ async function wishlistGamesToDOM() {
 
     const [firstElement, ...restArray] = wishlistData 
     
+    console.log(restArray)
     restArray.map(g => {
         let info = g.info
+        // console.log(g)
         
         //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
         const title = ((info || {}).title)
@@ -238,7 +245,7 @@ function filterUniqueGames(data) {
 
 //adds games to the homepage DOM
 function gameOnDom(uniqueGames) {
-    // console.log(uniqueGames)
+   
     const div = document.createElement('div')
     div.id = 'home-games'
     main().appendChild(div)

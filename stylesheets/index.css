@@ -43,9 +43,9 @@
     display: block;
 } */
 
-.center-align {
+/* .center-align {
     padding-bottom: 7%;
-}
+} */
 #wishlist-grid {
     box-sizing: border-box;
     /* width: 100%; */
@@ -59,7 +59,7 @@
 .wishlist-container {
   grid-column: 1;
   object-fit: contain;
-  height: auto;
+  height: 15%;
    display: flex;
  position:relative;
  flex-direction: column; 
