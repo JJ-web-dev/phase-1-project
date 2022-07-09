@@ -2,7 +2,9 @@
 This is a webiste to locate the best deals on video games
 
 ### Requirements
-* Start json server
+* Install json server with the following command in terminal: npm install -g json-server
+* Start json server with the following command in terminal: json-server --watch db.json
+    
 
 ### Installation Instructions
 * Open index.html in browser

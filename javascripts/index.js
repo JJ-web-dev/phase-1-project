@@ -3,18 +3,12 @@ document.addEventListener('DOMContentLoaded', function () {
     homeLink()
     dealsByStoreLink()
     wishlistLink()
-    // setTimeout(postWishlistGame, 2000)
-    wishlistGamesToDOM()
-
-
-
-
-
+    
 
 })
 
 
-/** Global Variables */
+
 
 
 /** Event Listeners */
@@ -36,11 +30,18 @@ function wishlistLink() {
 
 function mousePointerChange() {
 
-    const mousePointer = document.querySelector('#game-grid')
-    console.log(mousePointer)
-    mousePointer.addEventListener('mouseover', function (e) {
-        e.target.style.color = 'orange';
-    })
+    const mouseOver = document.querySelectorAll('.add-to-wishlist')
+    
+    mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
+        e.target.style.cursor = 'pointer'
+        // e.target.style.color = 'red'
+    }))
+    const mouseOut = document.querySelectorAll('.add-to-wishlist')
+    mouseOut.forEach(item => item.addEventListener('mouseout', function (e) {
+        e.target.style.cursor = 'default'
+        // e.target.style.color = 'black'
+        
+    }))
 }
 
 /**Node Getters */
@@ -66,7 +67,8 @@ function loadHome() {
     h1.className = 'center-align'
     main().appendChild(h1)
     fetchOnSaleGames()
-    setTimeout(postWishlistGame, 2000)
+    setTimeout(postWishlistGame, 1000)
+    setTimeout(mousePointerChange, 1500)
 }
 
 
@@ -85,12 +87,19 @@ function loadWishList() {
     h1.className = 'center-align'
     wishlist().appendChild(h1)
     wishlistGamesToDOM()
+    setTimeout(deleteWishlistGame, 500)
 
 }
 
 
 
 /**Fetch Functions */
+/**Fetch the games on sale from api which are used on homepage
+-Games come in from api with duplicates - duplicates pulled out with filterUniqueGames
+-Games come in from api with a deal rating 1-10; 10 being the best deal - filterGameDeals 
+sets games based on rating to be rendered pn home
+-The games are rendered on homepage with function gameOnDom
+*/
 async function fetchOnSaleGames() {
     const response = await fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
     const data = await response.json()
@@ -106,7 +115,7 @@ async function fetchOnSaleGames() {
 function filterGameDeals(game) {
     let gameDeal = []
     game.map(games => {
-        if (games.dealRating >= 9.6) {
+        if (games.dealRating >= 9.7) {
 
             gameDeal.push(games)
         }
@@ -118,17 +127,20 @@ function filterGameDeals(game) {
 function postWishlistGame() {
 
     const addWishListEvent = document.querySelectorAll('.add-to-wishlist')
-
+    
     addWishListEvent.forEach(item => item.addEventListener('click', e => {
-
-        const gameID = e.target.id
-          console.log(gameID)
+       
+      const gameID = (e.target.id)
+      e.target.innerText = 'Game Added to Wishlist'
+      e.target.style.color = 'red'
+        console.log(gameID)
+         
 
         fetch(`https://www.cheapshark.com/api/1.0/games?id=${gameID}`)
             .then(response => response.json())
             .then(response => {
-                const gameInfo = response.info
-
+                const gameInfo = response
+                
 
                 fetch('http://localhost:3000/posts', {
                     method: 'POST',
@@ -142,31 +154,63 @@ function postWishlistGame() {
             })
     }))
 }
+
+function deleteWishlistGame(){
+    const deleteBtn = document.querySelectorAll('.wishlist-delete-btn')
+    
+    deleteBtn.forEach(item => item.addEventListener('click', e => {
+        
+        const wishlistGameDelete = e.target.id
+       
+       const parentElement = e.target.parentElement
+       parentElement.innerHTML = ''
+      
+        fetch(`http://localhost:3000/posts/${wishlistGameDelete}`, {
+        method: "DELETE",
+        headers: {
+        'Content-type': 'application/json'
+    }
+    })
+}))
+}
+
 //Loads games that were added to json wishlist on wishlist page
-async function wishlistGamesToDOM(game) {
+async function wishlistGamesToDOM() {
     const response = await fetch('http://localhost:3000/posts')
     const wishlistData = await response.json()
     
-
+    // console.log(wishlistData)
+   
     const div = document.createElement('div')
     div.id = 'wishlist-games'
     wishlist().appendChild(div)
     const ul = document.createElement('ul')
-    ul.id = 'game-grid'
+    ul.id = 'wishlist-grid'
     div.appendChild(ul)
 
     const [firstElement, ...restArray] = wishlistData 
     
     restArray.map(g => {
-
+        let info = g.info
+        
+        //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
+        const title = ((info || {}).title)
+        const thumb = ((info || {}).thumb)
+        const id = g.id
+        
+        
         const li = document.createElement('li')
-        li.className = 'game-container'
-        li.innerText = `${g.title}`
+        li.className = 'wishlist-container'
+        li.innerText = `${title}`
         const img = document.createElement('img')
         img.className = 'wishlistGameImg'
-        img.src = g.thumb
+        img.src = thumb
+        const btn = document.createElement('button')
+        btn.className = 'wishlist-delete-btn'
+        btn.innerText = 'Delete'
+        btn.id = id
         ul.appendChild(li)
-        li.appendChild(img)
+        li.append(img, btn)
 
 
     })

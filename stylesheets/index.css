@@ -28,7 +28,7 @@
  flex-direction: column;
  object-fit: contain;
  width: 100px;
- height: 250px;
+ height: auto;
  /* color: white;
  background-color: #000; */
 }
@@ -37,6 +37,37 @@
     width: 100px;
     height: 250px;
     object-fit: contain !important;
+}
+
+/* #wishlist-games {
+    display: block;
+} */
+
+.center-align {
+    padding-bottom: 7%;
+}
+#wishlist-grid {
+    box-sizing: border-box;
+    /* width: 100%; */
+    display: grid;
+    grid-template-columns: 20%;
+    grid-gap: 50px;
+    /* height: 50vh; */
+    border: 3px solid white;
+}
+
+.wishlist-container {
+  grid-column: 1;
+  object-fit: contain;
+  height: auto;
+   display: flex;
+ position:relative;
+ flex-direction: column; 
+ justify-content: center;
+ margin: 20px;
+ 
+ /* display: inline-block; */
+  
 }
 
 span {

@@ -4,28 +4,186 @@
       "id": 0
     },
     {
-      "title": "Killing Floor 2",
-      "steamAppID": "232090",
-      "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/232090/capsule_sm_120.jpg?t=1655328266",
+      "info": {
+        "title": "Ancient Enemy",
+        "steamAppID": "993790",
+        "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/993790/capsule_sm_120.jpg?t=1628510098"
+      },
+      "cheapestPriceEver": {
+        "price": "3.00",
+        "date": 1654818602
+      },
+      "deals": [
+        {
+          "storeID": "25",
+          "dealID": "SYK0IZ58tuNnzERn%2FmpPZas6Wzt2omY%2FC8%2BiIFLUkxk%3D",
+          "price": "0.00",
+          "retailPrice": "14.99",
+          "savings": "100.000000"
+        },
+        {
+          "storeID": "15",
+          "dealID": "BD8MpcddPSzcJguLzneljyifqAv0UAR6n4KWyLMmlKo%3D",
+          "price": "11.01",
+          "retailPrice": "14.99",
+          "savings": "26.551034"
+        },
+        {
+          "storeID": "3",
+          "dealID": "Atf%2F3k5j2Hv4sj%2B17DFl59U9V70dCz0TN23yjcHrXQg%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "1",
+          "dealID": "poWzeVjK%2B3wLTT7Jyp12nh%2B939aXz36%2FhZaFUthp8%2Fc%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "11",
+          "dealID": "nx8AXGVLNIEZ1EsVVyY023F%2BRGr56sr8bvGPt1WH3xE%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "7",
+          "dealID": "2cmeIR3yZ0mvpH5zDvjqOwdIO%2FkG1rnoW%2BN73YyO80A%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        }
+      ],
       "id": 1
     },
     {
-      "title": "The Crew 2 Gold Edition",
-      "steamAppID": null,
-      "thumb": "https://gamersgatep.imgix.net/7/2/c/a881754019c34df731be02e6d2e1b72584e02c27.jpg?auto=&w=",
+      "info": {
+        "title": "Killing Floor 2",
+        "steamAppID": "232090",
+        "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/232090/capsule_sm_120.jpg?t=1655328266"
+      },
+      "cheapestPriceEver": {
+        "price": "4.56",
+        "date": 1639792148
+      },
+      "deals": [
+        {
+          "storeID": "25",
+          "dealID": "fAhUTyPgqhoSmx2mC8TPPNYAQGY1wYOEfF4WRxB9YEs%3D",
+          "price": "0.00",
+          "retailPrice": "29.99",
+          "savings": "100.000000"
+        },
+        {
+          "storeID": "21",
+          "dealID": "4bmTbeTz6dpFRqREBfrRvNCkUSHOWvFNYoVhzEc1D8Y%3D",
+          "price": "7.49",
+          "retailPrice": "29.99",
+          "savings": "75.025008"
+        },
+        {
+          "storeID": "23",
+          "dealID": "ioSbX146txFHaeYD0zWfa9AqZKEOj%2BtCTLZlEl3wFK0%3D",
+          "price": "22.99",
+          "retailPrice": "29.99",
+          "savings": "23.341114"
+        },
+        {
+          "storeID": "15",
+          "dealID": "dx0ORyv1ksjr79EmiM2PoJ2P%2FUqMAPFrFEVAacPqQ9I%3D",
+          "price": "23.89",
+          "retailPrice": "29.99",
+          "savings": "20.340113"
+        },
+        {
+          "storeID": "28",
+          "dealID": "wVrgocvy%2BdIYhsgb1CZeMgCMLcwV8by0X1yLCXgm0Cc%3D",
+          "price": "23.99",
+          "retailPrice": "29.99",
+          "savings": "20.006669"
+        },
+        {
+          "storeID": "33",
+          "dealID": "HOFo2cz4XA9WqqL%2FDdGwD5%2BjDf8Qotg%2FKCiMsyoYNnk%3D",
+          "price": "25.49",
+          "retailPrice": "29.99",
+          "savings": "15.005002"
+        },
+        {
+          "storeID": "6",
+          "dealID": "j76AsmWfR1al52zfWqyEZHkAqZswFV4Eb3U2H9yp%2BPk%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "2",
+          "dealID": "eXVFaqylyoZpld5EIVrAO7cRydgs0QrgTcPlfs0B2mg%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "1",
+          "dealID": "TfaviHH8M0SQS18DdCF2%2FRLC5MeS%2BNU8YS9HpOY16hU%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "11",
+          "dealID": "U1FHmO3lM%2F9WWjErJI2oxl49C8%2FlChz4mEhFgnAqTZs%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "3",
+          "dealID": "4NzJ4Pi5jeWQ73fSyLWq83Uz3HnifNaUuO0s4HSSitc%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "27",
+          "dealID": "fZ%2F8L%2Fb%2Fl143iFOUbajKttKQUtjShD7WMF2aImmyrG4%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "29",
+          "dealID": "i7TstaU92QQJeLvIrBakPslXPt8u%2Fj0HnBCjFe%2Bc1uQ%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "32",
+          "dealID": "3RTcO1wLUhLC49mVsN2Nbl3TTjCUMmsq7Cw0SxaEBGk%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "24",
+          "dealID": "egJjWLbICT6McqR%2FGUbFaAkOvMKUkLbRlYbHEVAoAr8%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "30",
+          "dealID": "b7ZImUvo6iYfZqocPK2taOHthlu0ySgfoKal1TrdoYw%3D",
+          "price": "29.99",
+          "retailPrice": "29.99",
+          "savings": "0.000000"
+        }
+      ],
       "id": 2
-    },
-    {
-      "title": "XCOM 2 Collection",
-      "steamAppID": null,
-      "thumb": "https://gamersgatep.imgix.net/a/4/2/3e624ed2a18d7d04afc30547cdd5dbb86795624a.jpg?auto=&w=",
-      "id": 3
-    },
-    {
-      "title": "Sid Meiers Civilization VI Anthology",
-      "steamAppID": null,
-      "thumb": "https://gamersgatep.imgix.net/0/e/3/964b0e3328eb6a250e05f11e4097bb171c4153e0.jpg?auto=&w=",
-      "id": 4
     }
   ]
 }
