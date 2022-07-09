@@ -44,6 +44,24 @@ function mousePointerChange() {
     }))
 }
 
+function gameContainerHover() {
+
+    const mouseOver = document.querySelectorAll('.game-container')
+    console.log(mouseOver.children)
+    
+    mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
+        e.target.style.filter = 'drop-shadow(0 0 .8rem crimson)'
+        
+        
+    }))
+    const mouseOut = document.querySelectorAll('.game-container')
+    mouseOut.forEach(item => item.addEventListener('mouseout', function (e) {
+        e.target.style.filter = 'none'
+       
+        
+    }))
+}
+
 /**Node Getters */
 let main = () => document.getElementById('main')
 let storeDeals = () => document.getElementById('store-deals')
@@ -69,6 +87,7 @@ function loadHome() {
     fetchOnSaleGames()
     setTimeout(postWishlistGame, 1000)
     setTimeout(mousePointerChange, 1500)
+    setTimeout(gameContainerHover, 1500)
 }
 
 
@@ -136,9 +155,10 @@ function postWishlistGame() {
        
       const gameID = (e.target.id)
       e.target.innerText = 'Game Added to Wishlist'
-      e.target.style.color = 'red'
+      e.target.style.color = 'crimson'
+      e.target.style.backgroundColor = 'black'
         console.log(gameID)
-         
+      
 
         fetch(`https://www.cheapshark.com/api/1.0/games?id=${gameID}`)
             .then(response => response.json())
@@ -156,6 +176,7 @@ function postWishlistGame() {
                 })
 
             })
+        
     }))
 }
 
@@ -198,7 +219,8 @@ async function wishlistGamesToDOM() {
     console.log(restArray)
     restArray.map(g => {
         let info = g.info
-        // console.log(g)
+        let allDeals = g.deals[0]
+        console.log(allDeals)
         
         //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
         const title = ((info || {}).title)
@@ -265,7 +287,7 @@ function gameOnDom(uniqueGames) {
         const img = document.createElement('img')
         img.className = 'homeGameImg'
         img.src = g.thumb
-        const addWishlist = document.createElement('span')
+        const addWishlist = document.createElement('button')
         addWishlist.className = 'add-to-wishlist'
         addWishlist.id = g.gameID
         addWishlist.innerText = 'Add to Wishlist'
