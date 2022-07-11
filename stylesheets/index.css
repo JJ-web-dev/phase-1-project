@@ -1,16 +1,18 @@
-/* body {
+body {
     background-color: #000;
-} */
+}
 
-/* h1 {
-    /* color: white; */
-/* } */ 
+h1 {
+    font-size: 3rem;
+    color: white;
+}
 
 h4 {
     font-size: 1.25rem;
     font-family: ' Montserrat';
     font-weight: bold;
 }
+
 span {
     font-size: 14px;
     font-family: ' Montserrat';
@@ -22,64 +24,76 @@ span {
 
 .homeLink {
     font-family: "Roboto Mono";
-    
+
 }
 
 #main {
     height: 66px;
+
 }
 
 .home-search {
-    text-align: center;
-}
-
-#log.title-input {
+    text-align: right !important;
     width: 30%;
-    border: 1px crimson; 
+    border: 1px crimson;
     border-style: solid;
     border-radius: 10px;
     padding: 5px 20px;
-   
+}
+
+.form-div {
+
+    display: grid;
+    place-items: center;
+}
+
+.title-input {
+    height: 30px !important;
+    color: white;
+
 }
 
 
 
-/* #home-games {
-    background-color: #000;
-    height: 600px;
-} */
+
+
+#home-games {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
 
 #game-list {
     display: block
 }
 
 #game-grid {
-    box-sizing: border-box;
-    width: 100%;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-gap: 50px;
-    height: 50vh;
-    
-    margin-left: 4%;
-    margin-right: 2%;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    margin-left: 5%;
+    margin-right: 4%;
+    min-width: 0;
+    gap: 30px;
+
+
 
 }
 
+
 .game-container {
- display: flex;
- position: relative;
- flex-direction: column;
- object-fit: contain;
- width: 100px;
- height: auto;
- /* color: white; */
- 
- /* border: 1px solid;
- border-radius: 4px;
- border-color: rgb(200, 200, 200); */
- justify-content: center;
- 
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    object-fit: contain;
+    width: 100px;
+    height: auto;
+    align-items: flex-start;
+    color: white;
+    justify-content: center;
+
 }
 
 .homeGameImg {
@@ -102,21 +116,21 @@ span {
     grid-template-columns: 20%;
     grid-gap: 50px;
     /* height: 50vh; */
-    
+
 }
 
 .wishlist-container {
-  grid-column: 1;
-  object-fit: contain;
-  height: 15%;
-   display: flex;
- position:relative;
- flex-direction: column; 
- justify-content: center;
- margin: 20px;
- 
- /* display: inline-block; */
-  
+    grid-column: 1;
+    object-fit: contain;
+    height: 15%;
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    justify-content: center;
+    margin: 20px;
+
+    /* display: inline-block; */
+
 }
 
 .add-to-wishlist {
@@ -126,4 +140,3 @@ span {
 span {
     object-fit: contain;
 }
-

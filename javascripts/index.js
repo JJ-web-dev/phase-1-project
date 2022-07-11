@@ -86,6 +86,7 @@ function loadHome() {
     main().appendChild(h1)
     fetchOnSaleGames()
     searchGames()
+    searchAndLoadHome()
     setTimeout(postWishlistGame, 1000)
     setTimeout(mousePointerChange, 1500)
     setTimeout(gameContainerHover, 1000)
@@ -150,24 +151,40 @@ function filterGameDeals(game) {
 
 //Search bar for games on homepage
 function searchGames() {
-
+    const div = document.createElement('div')
+    div.className = 'form-div'
     const form = document.createElement('form')
     form.className = 'home-search'
     const searchBar = document.createElement('input')
     searchBar.type = 'text'
     searchBar.className = 'title-input'
     searchBar.name = 'search'
-    searchBar.placeholder = 'Search game by title'
+    searchBar.placeholder = 'Search By Game Title'
     const input = document.createElement('input')
+    input.className = 'input-button'
     input.type = 'submit'
     input.name = 'submit'
-    main().appendChild(form)
-    form.appendChild(searchBar, input)
+    input.value = 'Search'
+    main().appendChild(div)
+    div.appendChild(form)
+    form.append(searchBar, input)
 
+}
+
+function searchAndLoadHome() {
 
 
     document.querySelector('form').addEventListener('submit', e => {
         e.preventDefault()
+
+        const homeGames = document.getElementById('home-games')
+        homeGames.innerHTML = ''
+        homeGames.remove()
+        const searchArea = document.querySelector('.title-input')
+
+        const h1 = document.querySelector('h1')
+        h1.textContent = 'Search Results'
+
         const searchTerms = e.target[0].value
 
 
@@ -176,7 +193,8 @@ function searchGames() {
             .then(response => {
 
                 const uniqueSearchedGames = filterUniqueGames(response)
-                console.log(uniqueSearchedGames)
+                gameOnDom(uniqueSearchedGames)
+                searchArea.value = ''
             })
     })
 
