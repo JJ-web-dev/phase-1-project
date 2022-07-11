@@ -1,7 +1,8 @@
 document.addEventListener('DOMContentLoaded', function () {
+    
     loadHome()
     homeLink()
-    dealsByStoreLink()
+    shoppingCartLink()
     wishlistLink()
 
 
@@ -18,9 +19,9 @@ function homeLink() {
 
 }
 
-function dealsByStoreLink() {
-    const dealsByStoreLink = document.querySelector('.deals-by-store')
-    dealsByStoreLink.addEventListener('click', loadDealsByStore)
+function shoppingCartLink() {
+    // const dealsByStoreLink = document.querySelector('.deals-by-store')
+    shoppingCart().addEventListener('click', loadShoppingCart)
 }
 
 function wishlistLink() {
@@ -64,7 +65,8 @@ function gameContainerHover() {
 
 /**Node Getters */
 let main = () => document.getElementById('main')
-let storeDeals = () => document.getElementById('store-deals')
+let shoppingCart = () => document.getElementById('shopping-cart')
+let cart = () => document.getElementById('cart')
 let wishlist = () => document.getElementById('wishlist')
 let homeGames = () => document.getElementById('home-games')
 
@@ -73,7 +75,7 @@ let homeGames = () => document.getElementById('home-games')
 /**Resets all divs on navigation */
 const divReset = () => {
     main().innerHTML = ''
-    storeDeals().innerHTML = ''
+   cart().innerHTML = ''
     wishlist().innerHTML = ''
 }
 
@@ -93,12 +95,12 @@ function loadHome() {
 }
 
 
-function loadDealsByStore() {
+function loadShoppingCart() {
     divReset()
     let h1 = document.createElement('h1')
-    h1.textContent = "Shop By Store"
+    h1.textContent = "Your Cart"
     h1.className = 'center-align'
-    storeDeals().appendChild(h1)
+    cart().appendChild(h1)
 }
 
 function loadWishList() {
@@ -345,6 +347,7 @@ function gameOnDom(uniqueGames) {
         const h4 = document.createElement('h4')
         h4.textContent = `${g.title}`
         const spanSalePrice = document.createElement('span')
+        spanSalePrice.className = 'sale-price'
         spanSalePrice.textContent = `Sale Price ${g.salePrice}`
         const spanNormalPrice = document.createElement('span')
         spanNormalPrice.textContent = `Normal Price ${g.normalPrice}`
