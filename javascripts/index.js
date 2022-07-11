@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function () {
     homeLink()
     dealsByStoreLink()
     wishlistLink()
-    
+
 
 })
 
@@ -31,34 +31,34 @@ function wishlistLink() {
 function mousePointerChange() {
 
     const mouseOver = document.querySelectorAll('.add-to-wishlist')
-    
+
     mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
         e.target.style.cursor = 'pointer'
-        
+
     }))
     const mouseOut = document.querySelectorAll('.add-to-wishlist')
     mouseOut.forEach(item => item.addEventListener('mouseout', function (e) {
         e.target.style.cursor = 'default'
-       
-        
+
+
     }))
 }
 
 function gameContainerHover() {
 
     const mouseOver = document.querySelectorAll('.game-container')
-    console.log(mouseOver.children)
-    
+
+
     mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
         e.target.style.filter = 'drop-shadow(0 0 .8rem crimson)'
-        
-        
+
+
     }))
     const mouseOut = document.querySelectorAll('.game-container')
     mouseOut.forEach(item => item.addEventListener('mouseout', function (e) {
         e.target.style.filter = 'none'
-       
-        
+
+
     }))
 }
 
@@ -85,9 +85,10 @@ function loadHome() {
     h1.className = 'center-align'
     main().appendChild(h1)
     fetchOnSaleGames()
+    searchGames()
     setTimeout(postWishlistGame, 1000)
     setTimeout(mousePointerChange, 1500)
-    setTimeout(gameContainerHover, 1500)
+    setTimeout(gameContainerHover, 1000)
 }
 
 
@@ -123,9 +124,9 @@ async function fetchOnSaleGames() {
     const response = await fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
     const data = await response.json()
     const filteredBrokenData = data.filter(item => {
-        return item.gameID !== '223187' 
+        return item.gameID !== '223187'
     })
-    
+
     const games = await filterUniqueGames(filteredBrokenData)
 
     const filterGames = filterGameDeals(games)
@@ -145,26 +146,66 @@ function filterGameDeals(game) {
     return gameDeal
 }
 
+
+
+//Search bar for games on homepage
+function searchGames() {
+
+    const form = document.createElement('form')
+    form.className = 'home-search'
+    const searchBar = document.createElement('input')
+    searchBar.type = 'text'
+    searchBar.className = 'title-input'
+    searchBar.name = 'search'
+    searchBar.placeholder = 'Search game by title'
+    const input = document.createElement('input')
+    input.type = 'submit'
+    input.name = 'submit'
+    main().appendChild(form)
+    form.appendChild(searchBar, input)
+
+
+
+    document.querySelector('form').addEventListener('submit', e => {
+        e.preventDefault()
+        const searchTerms = e.target[0].value
+
+
+        fetch(`https://www.cheapshark.com/api/1.0/deals?title=${searchTerms}`)
+            .then(response => response.json())
+            .then(response => {
+
+                const uniqueSearchedGames = filterUniqueGames(response)
+                console.log(uniqueSearchedGames)
+            })
+    })
+
+
+
+}
+
+
+
 //Need to add alert once successful post is made
 //Posts game from home page to the wishlist page
 function postWishlistGame() {
 
     const addWishListEvent = document.querySelectorAll('.add-to-wishlist')
-    
+
     addWishListEvent.forEach(item => item.addEventListener('click', e => {
-       
-      const gameID = (e.target.id)
-      e.target.innerText = 'Game Added to Wishlist'
-      e.target.style.color = 'crimson'
-      e.target.style.backgroundColor = 'black'
+
+        const gameID = (e.target.id)
+        e.target.textContent = 'Game Added to Wishlist'
+        e.target.style.color = 'crimson'
+        e.target.style.backgroundColor = 'black'
         console.log(gameID)
-      
+
 
         fetch(`https://www.cheapshark.com/api/1.0/games?id=${gameID}`)
             .then(response => response.json())
             .then(response => {
                 const gameInfo = response
-                
+
 
                 fetch('http://localhost:3000/posts', {
                     method: 'POST',
@@ -176,37 +217,37 @@ function postWishlistGame() {
                 })
 
             })
-        
+
     }))
 }
 
 //This function deletes games from the wishlist page and json server
-function deleteWishlistGame(){
+function deleteWishlistGame() {
     const deleteBtn = document.querySelectorAll('.wishlist-delete-btn')
-    
+
     deleteBtn.forEach(item => item.addEventListener('click', e => {
-        
+
         const wishlistGameDelete = e.target.id
-       
-       const parentElement = e.target.parentElement
-       parentElement.innerHTML = ''
-      
+
+        const parentElement = e.target.parentElement
+        parentElement.innerHTML = ''
+
         fetch(`http://localhost:3000/posts/${wishlistGameDelete}`, {
-        method: "DELETE",
-        headers: {
-        'Content-type': 'application/json'
-    }
-    })
-}))
+            method: "DELETE",
+            headers: {
+                'Content-type': 'application/json'
+            }
+        })
+    }))
 }
 
 //Loads games that were added to json wishlist on wishlist page
 async function wishlistGamesToDOM() {
     const response = await fetch('http://localhost:3000/posts')
     const wishlistData = await response.json()
-    
-    
-   
+
+
+
     const div = document.createElement('div')
     div.id = 'wishlist-games'
     wishlist().appendChild(div)
@@ -214,32 +255,35 @@ async function wishlistGamesToDOM() {
     ul.id = 'wishlist-grid'
     div.appendChild(ul)
 
-    const [firstElement, ...restArray] = wishlistData 
-    
+    const [firstElement, ...restArray] = wishlistData
+
     console.log(restArray)
     restArray.map(g => {
         let info = g.info
         let allDeals = g.deals[0]
+        console.log(g.deals)
         console.log(allDeals)
-        
+
         //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
         const title = ((info || {}).title)
         const thumb = ((info || {}).thumb)
         const id = g.id
-        
-        
+
+
         const li = document.createElement('li')
         li.className = 'wishlist-container'
-        li.innerText = `${title}`
+        // li.textContent = `${title}`
+        const h3 = document.createElement('h3')
+        h3.textContent = `${title}`
         const img = document.createElement('img')
         img.className = 'wishlistGameImg'
         img.src = thumb
         const btn = document.createElement('button')
         btn.className = 'wishlist-delete-btn'
-        btn.innerText = 'Delete'
+        btn.textContent = 'Delete'
         btn.id = id
         ul.appendChild(li)
-        li.append(img, btn)
+        li.append(h3, img, btn)
 
 
     })
@@ -267,7 +311,7 @@ function filterUniqueGames(data) {
 
 //adds games to the homepage DOM
 function gameOnDom(uniqueGames) {
-   
+
     const div = document.createElement('div')
     div.id = 'home-games'
     main().appendChild(div)
@@ -279,20 +323,22 @@ function gameOnDom(uniqueGames) {
 
         const li = document.createElement('li')
         li.className = 'game-container'
-        li.innerText = `${g.title}`
+        // li.textContent = `${g.title}`
+        const h4 = document.createElement('h4')
+        h4.textContent = `${g.title}`
         const spanSalePrice = document.createElement('span')
-        spanSalePrice.innerText = `Sale Price ${g.salePrice}`
+        spanSalePrice.textContent = `Sale Price ${g.salePrice}`
         const spanNormalPrice = document.createElement('span')
-        spanNormalPrice.innerText = `Normal Price ${g.normalPrice}`
+        spanNormalPrice.textContent = `Normal Price ${g.normalPrice}`
         const img = document.createElement('img')
         img.className = 'homeGameImg'
         img.src = g.thumb
         const addWishlist = document.createElement('button')
         addWishlist.className = 'add-to-wishlist'
         addWishlist.id = g.gameID
-        addWishlist.innerText = 'Add to Wishlist'
+        addWishlist.textContent = 'Add to Wishlist'
         ul.appendChild(li)
-        li.append(img, spanNormalPrice, spanSalePrice, addWishlist)
+        li.append(h4, img, spanNormalPrice, spanSalePrice, addWishlist)
 
 
     })
