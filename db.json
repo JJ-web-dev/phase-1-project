@@ -3,6 +3,125 @@
     {
       "id": 0,
       "gameID": 0
+    },
+    {
+      "id": "213604",
+      "info": {
+        "title": "Ancient Enemy",
+        "steamAppID": "993790",
+        "thumb": "https://cdn.cloudflare.steamstatic.com/steam/apps/993790/capsule_sm_120.jpg?t=1628510098"
+      },
+      "cheapestPriceEver": {
+        "price": "3.00",
+        "date": 1654818602
+      },
+      "deals": [
+        {
+          "storeID": "25",
+          "dealID": "SYK0IZ58tuNnzERn%2FmpPZas6Wzt2omY%2FC8%2BiIFLUkxk%3D",
+          "price": "0.00",
+          "retailPrice": "14.99",
+          "savings": "100.000000"
+        },
+        {
+          "storeID": "3",
+          "dealID": "Atf%2F3k5j2Hv4sj%2B17DFl59U9V70dCz0TN23yjcHrXQg%3D",
+          "price": "3.75",
+          "retailPrice": "14.99",
+          "savings": "74.983322"
+        },
+        {
+          "storeID": "15",
+          "dealID": "BD8MpcddPSzcJguLzneljyifqAv0UAR6n4KWyLMmlKo%3D",
+          "price": "11.01",
+          "retailPrice": "14.99",
+          "savings": "26.551034"
+        },
+        {
+          "storeID": "1",
+          "dealID": "poWzeVjK%2B3wLTT7Jyp12nh%2B939aXz36%2FhZaFUthp8%2Fc%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "11",
+          "dealID": "nx8AXGVLNIEZ1EsVVyY023F%2BRGr56sr8bvGPt1WH3xE%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "7",
+          "dealID": "2cmeIR3yZ0mvpH5zDvjqOwdIO%2FkG1rnoW%2BN73YyO80A%3D",
+          "price": "14.99",
+          "retailPrice": "14.99",
+          "savings": "0.000000"
+        }
+      ]
+    },
+    {
+      "id": "194281",
+      "info": {
+        "title": "AppGameKit Exclusive Collection",
+        "steamAppID": null,
+        "thumb": "https://images.greenmangaming.com/68345181a9fb4ac3ad17683e00a49361/eec1b0d81e9d4cef856dc333a29d557c.jpg"
+      },
+      "cheapestPriceEver": {
+        "price": "5.00",
+        "date": 1641831963
+      },
+      "deals": [
+        {
+          "storeID": "3",
+          "dealID": "VOShNsLHsN5a45Y4IYuLDvraDIXQSQR1EAgkvt8Fm4U%3D",
+          "price": "6.25",
+          "retailPrice": "124.95",
+          "savings": "94.997999"
+        }
+      ]
+    },
+    {
+      "id": "194282",
+      "info": {
+        "title": "GameGuru Exclusive Collection",
+        "steamAppID": null,
+        "thumb": "https://images.greenmangaming.com/179d4aeb2ca14e4aaa032a0e6a164959/f050deccc8d0497fb1a8e84504d477f5.jpg"
+      },
+      "cheapestPriceEver": {
+        "price": "6.20",
+        "date": 1641831054
+      },
+      "deals": [
+        {
+          "storeID": "3",
+          "dealID": "q2v03zxisYZyWNOlVYpN4HBJe28FyUehOZZNAhrnenk%3D",
+          "price": "7.75",
+          "retailPrice": "154.94",
+          "savings": "94.998064"
+        }
+      ]
+    },
+    {
+      "id": "240677",
+      "info": {
+        "title": "The Game Creators - Mega Makers Pack",
+        "steamAppID": null,
+        "thumb": "https://images.greenmangaming.com/72ea2a17d3964f3db3947d2847a4fba5/4e1cb2db71eb4a079359cd56068db95d.jpg"
+      },
+      "cheapestPriceEver": {
+        "price": "18.19",
+        "date": 1645754627
+      },
+      "deals": [
+        {
+          "storeID": "3",
+          "dealID": "aqSe3bobz4V7sVV8%2BoYpUBR%2FhlvFoeYwSH06hhx8seU%3D",
+          "price": "18.19",
+          "retailPrice": "454.86",
+          "savings": "96.000967"
+        }
+      ]
     }
   ]
 }

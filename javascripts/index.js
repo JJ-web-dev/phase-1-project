@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-
     loadHome()
     homeLink()
     shoppingCartLink()
@@ -7,11 +6,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 })
-
-
-
-
-
 /** Event Listeners */
 function homeLink() {
     const homeLink = document.querySelector('.home-link')
@@ -20,7 +14,6 @@ function homeLink() {
 }
 
 function shoppingCartLink() {
-    // const dealsByStoreLink = document.querySelector('.deals-by-store')
     shoppingCart().addEventListener('click', loadShoppingCart)
 }
 
@@ -28,7 +21,8 @@ function wishlistLink() {
     const wishlistLink = document.querySelector('.wishlist')
     wishlistLink.addEventListener('click', loadWishList)
 }
-
+//changes mouse pointer to a 'finger' pointer
+//should make this with a peram for all btns***
 function mousePointerChange() {
 
     const mouseOver = document.querySelectorAll('.add-to-wishlist')
@@ -44,7 +38,7 @@ function mousePointerChange() {
 
     }))
 }
-
+//Green hover effect on game containers
 function gameContainerHover(container) {
 
     const mouseOver = document.querySelectorAll(container)
@@ -63,6 +57,7 @@ function gameContainerHover(container) {
     }))
 }
 
+
 /**Node Getters */
 let main = () => document.getElementById('main')
 let shoppingCart = () => document.getElementById('shopping-cart')
@@ -79,7 +74,10 @@ const divReset = () => {
     wishlist().innerHTML = ''
 }
 
-// Home screen load 
+//Home screen load 
+//Adds initial deal rated games to DOM with fetchOnSaleGames
+//SearchGames creates the search bar
+//SearchAndLoadHome provides search function and loads games after search is submitted
 function loadHome() {
     divReset()
     let h1 = document.createElement('h1')
@@ -102,7 +100,9 @@ function loadShoppingCart() {
     h1.className = 'center-align'
     cart().appendChild(h1)
 }
-
+//Loads the wishlist page
+//green hover effect from gameContainerHover
+//deletWishlistGame deletes games from wishlist when button clicked
 function loadWishList() {
     divReset()
     let h1 = document.createElement('h1')
@@ -139,6 +139,8 @@ async function fetchOnSaleGames() {
 
 }
 
+//This function is used to filter games by a particular game deal rating 1-10, with 10 being the top rated deal
+//This is set by dev but could be placed in drop down to let User select which rating to be displayed
 function filterGameDeals(game) {
     let gameDeal = []
     game.map(games => {
@@ -176,14 +178,16 @@ function searchGames() {
     form.append(searchBar, input)
 
 }
-
+//search bar - searches by title through fetch after submit
+//runs the games through the filter function and those values are passed into gameOnDOM function
+//post to wishlist functionality is present after search with postWishlistGame function
 function searchAndLoadHome() {
-
 
     document.querySelector('form').addEventListener('submit', e => {
         e.preventDefault()
         const homeGames = document.getElementById('home-games')
         homeGames.innerHTML = ''
+        //using .remove to remove the previous searched games
         homeGames.remove()
         const searchArea = document.querySelector('.title-input')
         const h1 = document.querySelector('h1')
@@ -204,15 +208,11 @@ function searchAndLoadHome() {
                 setTimeout(gameContainerHover, 1000)
             })
     })
-
-
-
 }
 
-
-
-//Need to add alert once successful post is made
-//Posts game from home page to the wishlist page
+//Posts game with .add-to-wishlist button
+//initial POST is the gameID which is not present in data when fetch by gameID is done / to carry over ID-
+//gameID is posted as the id in json / fetch to api with gameID is iniated and gameID data is patched using gameID
 function postWishlistGame() {
 
     const addWishListEvent = document.querySelectorAll('.add-to-wishlist')
@@ -224,7 +224,6 @@ function postWishlistGame() {
         e.target.style.color = 'crimson'
         e.target.style.background = 'black'
         console.log(gameID)
-
 
         fetch('http://localhost:3000/posts', {
             method: 'POST',
@@ -242,10 +241,6 @@ function postWishlistGame() {
             .then(response => {
                 const gameInfo = response
 
-
-                console.log(gameInfo)
-
-
                 fetch(`http://localhost:3000/posts/${gameID}`, {
                     method: 'PATCH',
                     headers: {
@@ -256,13 +251,11 @@ function postWishlistGame() {
                 })
 
             })
-
-
-
     }))
 }
 
 //This function deletes games from the wishlist page and json server
+//clears entire parentElement when clicked
 function deleteWishlistGame() {
     const deleteBtn = document.querySelectorAll('.wishlist-delete-btn')
 
@@ -282,7 +275,10 @@ function deleteWishlistGame() {
     }))
 }
 
-//Loads games that were added to json wishlist on wishlist page
+//fetch(1) games that were added to json wishlist on wishlist page
+//fetch(2) store data which includes banners and logos
+//fetch(3) gets cheapest game price data by gameID and the historical low on game price - fetch of api should occur on every load- 
+//to give most recent data  
 async function wishlistGamesToDOM() {
     const response = await fetch('http://localhost:3000/posts')
     const wishlistData = await response.json()
@@ -356,12 +352,7 @@ async function wishlistGamesToDOM() {
         }
         fetchGameId()
     })
-
-
 }
-
-
-
 
 // filters the onSaleGames so no repeat games are rendered
 function filterUniqueGames(data) {
@@ -377,7 +368,6 @@ function filterUniqueGames(data) {
     });
 
     return uniqueGames
-
 }
 
 //adds games to the homepage DOM
