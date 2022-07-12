@@ -45,9 +45,9 @@ function mousePointerChange() {
     }))
 }
 
-function gameContainerHover() {
+function gameContainerHover(container) {
 
-    const mouseOver = document.querySelectorAll('.game-container')
+    const mouseOver = document.querySelectorAll(container)
 
 
     mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
@@ -55,7 +55,7 @@ function gameContainerHover() {
 
 
     }))
-    const mouseOut = document.querySelectorAll('.game-container')
+    const mouseOut = document.querySelectorAll(container)
     mouseOut.forEach(item => item.addEventListener('mouseout', function (e) {
         e.target.style.filter = 'none'
 
@@ -89,9 +89,9 @@ function loadHome() {
     fetchOnSaleGames()
     searchGames()
     searchAndLoadHome()
-    setTimeout(postWishlistGame, 1000)
-    setTimeout(mousePointerChange, 1500)
-    setTimeout(gameContainerHover, 1000)
+    setTimeout(postWishlistGame, 2000)
+    setTimeout(mousePointerChange, 2000)
+    setTimeout(gameContainerHover, 2000, '.game-container')
 }
 
 
@@ -110,6 +110,7 @@ function loadWishList() {
     h1.className = 'center-align'
     wishlist().appendChild(h1)
     wishlistGamesToDOM()
+    setTimeout(gameContainerHover, 1000, '.wishlist-container')
     setTimeout(deleteWishlistGame, 500)
 
 }
@@ -141,7 +142,7 @@ async function fetchOnSaleGames() {
 function filterGameDeals(game) {
     let gameDeal = []
     game.map(games => {
-        if (games.dealRating >= 9.7) {
+        if (games.dealRating >= 9.5) {
 
             gameDeal.push(games)
         }
@@ -167,8 +168,11 @@ function searchGames() {
     input.type = 'submit'
     input.name = 'submit'
     input.value = 'Search'
+    const span = document.createElement('span')
+    span.className = 'text-under-search'
+    span.textContent = 'Add A Game To Your Wishlist To Track The Daily Price'
     main().appendChild(div)
-    div.appendChild(form)
+    div.append(form, span)
     form.append(searchBar, input)
 
 }
@@ -178,12 +182,10 @@ function searchAndLoadHome() {
 
     document.querySelector('form').addEventListener('submit', e => {
         e.preventDefault()
-
         const homeGames = document.getElementById('home-games')
         homeGames.innerHTML = ''
         homeGames.remove()
         const searchArea = document.querySelector('.title-input')
-
         const h1 = document.querySelector('h1')
         h1.textContent = 'Search Results'
 
@@ -197,6 +199,9 @@ function searchAndLoadHome() {
                 const uniqueSearchedGames = filterUniqueGames(response)
                 gameOnDom(uniqueSearchedGames)
                 searchArea.value = ''
+                setTimeout(postWishlistGame, 1000)
+                setTimeout(mousePointerChange, 1500)
+                setTimeout(gameContainerHover, 1000)
             })
     })
 
@@ -307,13 +312,15 @@ async function wishlistGamesToDOM() {
         async function fetchGameId() {
             const gameSearchById = await fetch(`https://www.cheapshark.com/api/1.0/games?id=${gamesID}`)
             const gameIDs = await gameSearchById.json()
-                // console.log(gameIDs)
+            console.log(gameIDs)
             let deals = gameIDs.deals[0].price
             let storeNumber = gameIDs.deals[0].storeID
+            let historicalLow = gameIDs.cheapestPriceEver.price
+            console.log(historicalLow)
             const storeID = storeData.find(item => item.storeID === storeNumber)
             console.log(storeID)
             console.log(storeID.images.icon)
-            
+
 
             //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
             const title = ((info || {}).title)
@@ -331,6 +338,9 @@ async function wishlistGamesToDOM() {
             const spanBestPrice = document.createElement('span')
             spanBestPrice.className = 'best-price'
             spanBestPrice.textContent = `Best Price ${deals}`
+            const cheapestPriceEver = document.createElement('span')
+            cheapestPriceEver.className = 'cheapest-price-ever'
+            cheapestPriceEver.textContent = `Cheapest Price Ever ${historicalLow}`
             const spanStoreName = document.createElement('span')
             spanStoreName.className = 'store-name'
             spanStoreName.textContent = `Online Store: ${storeID.storeName}`
@@ -339,25 +349,16 @@ async function wishlistGamesToDOM() {
             storeImg.src = `https://www.cheapshark.com${storeID.images.banner}`
             const btn = document.createElement('button')
             btn.className = 'wishlist-delete-btn'
-            btn.textContent = 'Delete'
+            btn.textContent = 'Remove'
             btn.id = id
             ul.appendChild(li)
-            li.append(h4, img, spanBestPrice, spanStoreName, storeImg, btn)
+            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, btn)
         }
         fetchGameId()
     })
 
 
 }
-
-async function fetchStoreImg(imgurl){
-    const imgFetch = await fetch(`https://www.cheapshark.com/${imgurl}`)
-    const image = await imgFetch.json()
-}
-
-
-
-
 
 
 
@@ -393,7 +394,6 @@ function gameOnDom(uniqueGames) {
 
         const li = document.createElement('li')
         li.className = 'game-container'
-        // li.textContent = `${g.title}`
         const h4 = document.createElement('h4')
         h4.textContent = `${g.title}`
         const spanSalePrice = document.createElement('span')

@@ -8,9 +8,16 @@ h1 {
 }
 
 h4 {
+
     font-size: 1.25rem;
     font-family: ' Montserrat';
     font-weight: bold;
+
+}
+
+button {
+    width: 100%;
+    background: linear-gradient(to left, #4b73c3, #7f9ed3, #376edd);
 }
 
 span {
@@ -25,9 +32,10 @@ span {
 #nav-mobile {
     margin-left: 4.5%;
 }
+
 #shopping-cart {
-   float: right !important;
-   margin-right: 4.5%;
+    float: right !important;
+    margin-right: 4.5%;
 }
 
 .homeLink {
@@ -35,10 +43,6 @@ span {
 
 }
 
-#main {
-    height: 66px;
-
-}
 
 .home-search {
     text-align: right !important;
@@ -55,14 +59,20 @@ span {
     place-items: center;
 }
 
+.text-under-search {
+    color: white;
+    filter: drop-shadow(0 2mm 0.5rem crimson);
+    font-size: 1.4rem;
+    font-family: 'Roboto';
+    margin-top: 15px;
+
+}
+
 .title-input {
     height: 30px !important;
     color: white;
 
 }
-
-
-
 
 
 #home-games {
@@ -111,6 +121,7 @@ span {
 }
 
 .sale-price {
+    font-size: 1rem;
     font-weight: bold;
     color: #00d659;
 }
@@ -123,12 +134,15 @@ span {
     padding-bottom: 7%;
 } */
 #wishlist-grid {
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
+    flex-wrap: wrap;
     gap: 30px;
+
     margin-left: 4.5%;
-    width: 300px;
-    
+    align-items: flex-end;
+
+
     /* height: 50vh; */
 
 }
@@ -138,27 +152,45 @@ span {
     position: relative;
     flex-direction: column;
     object-fit: contain;
-    width: auto;
+    width: 200px;
+    height: 300px;
     height: auto;
-    align-items: flex-start;
     color: white;
-    justify-content: center;
+    align-items: center;
 
     /* display: inline-block; */
 
 }
 
-.add-to-shopping-cart {
-    width: 100%;
-    color: white;
-    padding-bottom: 2px;
-    background: linear-gradient(to left, #7f9ed3, #4b73c3, #376edd);
+.store-banner {
+    height: 30px;
+    width: 50%;
+
 }
 
-.add-to-wishlist {
-    width: 100%;
-    background: linear-gradient(to right, #7f9ed3, #4b73c3, #376edd);
+.best-price {
+    color: #00d659;
+    font-weight: bold;
+    font-size: 1.5rem;
 }
+
+.cheapest-price-ever {
+    color: rgb(3, 213, 255);
+    font-size: 1.2rem;
+}
+
+.store-name {
+    font-size: 1rem;
+    margin-top: 3px;
+}
+
+.add-to-shopping-cart {
+
+    color: white;
+    padding-bottom: 2px;
+}
+
+
 
 span {
     object-fit: contain;
