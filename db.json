@@ -1,7 +1,50 @@
 {
   "posts": [
     {
-      "id": 0
+      "id": 0,
+      "gameID": 0
+    },
+    {
+      "id": "100747",
+      "info": {
+        "title": "Chivalry - 4 Pack",
+        "steamAppID": null,
+        "thumb": "https://images.greenmangaming.com/d8251c7eb3414cfb911a79a37b1689b1/42a00f28575e41a0ad4c1b2df9b467cb.jpg"
+      },
+      "cheapestPriceEver": {
+        "price": "9.00",
+        "date": 1576504092
+      },
+      "deals": [
+        {
+          "storeID": "3",
+          "dealID": "Eg92yoZz62gNwxB15D6aKpwFMq2ql55hEgqBXjberOc%3D",
+          "price": "12.00",
+          "retailPrice": "74.99",
+          "savings": "83.997866"
+        }
+      ]
+    },
+    {
+      "id": "195526",
+      "info": {
+        "title": "Tank Warfare: Tunisia 1943 Complete Edition",
+        "steamAppID": null,
+        "thumb": "https://gamersgatep.imgix.net/8/8/c/6a3503fc7bf4cd591512b0ac02a2a1f98a40ec88.jpg?auto=&w="
+      },
+      "cheapestPriceEver": {
+        "price": "4.99",
+        "date": 1623628895
+      },
+      "deals": [
+        {
+          "storeID": "2",
+          "dealID": "0jp%2FBczfw6vyekiKenwesDWt00fuHUj8gjXkBhQtykM%3D",
+          "price": "7.20",
+          "retailPrice": "73.90",
+          "savings": "90.257104"
+        }
+      ]
     }
   ]
 }

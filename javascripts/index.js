@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    
+
     loadHome()
     homeLink()
     shoppingCartLink()
@@ -51,7 +51,7 @@ function gameContainerHover() {
 
 
     mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
-        e.target.style.filter = 'drop-shadow(0 0 .8rem crimson)'
+        e.target.style.filter = 'drop-shadow(0 0 .8rem #00d659)'
 
 
     }))
@@ -75,7 +75,7 @@ let homeGames = () => document.getElementById('home-games')
 /**Resets all divs on navigation */
 const divReset = () => {
     main().innerHTML = ''
-   cart().innerHTML = ''
+    cart().innerHTML = ''
     wishlist().innerHTML = ''
 }
 
@@ -217,9 +217,20 @@ function postWishlistGame() {
         const gameID = (e.target.id)
         e.target.textContent = 'Game Added to Wishlist'
         e.target.style.color = 'crimson'
-        e.target.style.backgroundColor = 'black'
+        e.target.style.background = 'black'
         console.log(gameID)
 
+
+        fetch('http://localhost:3000/posts', {
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json"
+            },
+            body: JSON.stringify({
+                id: gameID
+            })
+        })
 
         fetch(`https://www.cheapshark.com/api/1.0/games?id=${gameID}`)
             .then(response => response.json())
@@ -227,8 +238,11 @@ function postWishlistGame() {
                 const gameInfo = response
 
 
-                fetch('http://localhost:3000/posts', {
-                    method: 'POST',
+                console.log(gameInfo)
+
+
+                fetch(`http://localhost:3000/posts/${gameID}`, {
+                    method: 'PATCH',
                     headers: {
                         "Content-Type": "application/json",
                         Accept: "application/json"
@@ -237,6 +251,8 @@ function postWishlistGame() {
                 })
 
             })
+
+
 
     }))
 }
@@ -266,6 +282,15 @@ async function wishlistGamesToDOM() {
     const response = await fetch('http://localhost:3000/posts')
     const wishlistData = await response.json()
 
+    const apiResponse = await fetch('https://www.cheapshark.com/api/1.0/stores')
+    const storeData = await apiResponse.json()
+    // storeData.map(id => {
+    // const storeID = id.storeID
+    // console.log(storeData)
+    // const bestPrice = 
+
+
+    //I need to pull the best price for today from the api and append to dom under image
 
 
     const div = document.createElement('div')
@@ -277,12 +302,12 @@ async function wishlistGamesToDOM() {
 
     const [firstElement, ...restArray] = wishlistData
 
-    console.log(restArray)
+    // console.log(restArray)
     restArray.map(g => {
         let info = g.info
-        let allDeals = g.deals[0]
-        console.log(g.deals)
-        console.log(allDeals)
+
+
+
 
         //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
         const title = ((info || {}).title)
@@ -293,8 +318,8 @@ async function wishlistGamesToDOM() {
         const li = document.createElement('li')
         li.className = 'wishlist-container'
         // li.textContent = `${title}`
-        const h3 = document.createElement('h3')
-        h3.textContent = `${title}`
+        const h4 = document.createElement('h4')
+        h4.textContent = `${title}`
         const img = document.createElement('img')
         img.className = 'wishlistGameImg'
         img.src = thumb
@@ -303,13 +328,17 @@ async function wishlistGamesToDOM() {
         btn.textContent = 'Delete'
         btn.id = id
         ul.appendChild(li)
-        li.append(h3, img, btn)
+        li.append(h4, img, btn)
+
+
 
 
     })
 
 
 }
+
+
 
 
 // filters the onSaleGames so no repeat games are rendered
@@ -354,12 +383,16 @@ function gameOnDom(uniqueGames) {
         const img = document.createElement('img')
         img.className = 'homeGameImg'
         img.src = g.thumb
+        const shoppingCartBtn = document.createElement('button')
+        shoppingCartBtn.className = 'add-to-shopping-cart'
+        shoppingCartBtn.id = g.gameID
+        shoppingCartBtn.textContent = 'Add to Cart'
         const addWishlist = document.createElement('button')
         addWishlist.className = 'add-to-wishlist'
         addWishlist.id = g.gameID
-        addWishlist.textContent = 'Add to Wishlist'
+        addWishlist.textContent = 'Add Wishlist'
         ul.appendChild(li)
-        li.append(h4, img, spanNormalPrice, spanSalePrice, addWishlist)
+        li.append(h4, img, spanNormalPrice, spanSalePrice, shoppingCartBtn, addWishlist)
 
 
     })
