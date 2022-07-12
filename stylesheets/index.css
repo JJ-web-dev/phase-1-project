@@ -124,7 +124,7 @@ span {
 } */
 #wishlist-grid {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     gap: 30px;
     margin-left: 4.5%;
     width: 300px;

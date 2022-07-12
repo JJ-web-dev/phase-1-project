@@ -284,6 +284,7 @@ async function wishlistGamesToDOM() {
 
     const apiResponse = await fetch('https://www.cheapshark.com/api/1.0/stores')
     const storeData = await apiResponse.json()
+    // console.log(storeData)
     // storeData.map(id => {
     // const storeID = id.storeID
     // console.log(storeData)
@@ -301,13 +302,18 @@ async function wishlistGamesToDOM() {
     restArray.map(g => {
         let info = g.info
         const gamesID = g.id
-        console.log(gamesID)
+        // console.log(gamesID)
 
         async function fetchGameId() {
             const gameSearchById = await fetch(`https://www.cheapshark.com/api/1.0/games?id=${gamesID}`)
             const gameIDs = await gameSearchById.json()
-
+                // console.log(gameIDs)
             let deals = gameIDs.deals[0].price
+            let storeNumber = gameIDs.deals[0].storeID
+            const storeID = storeData.find(item => item.storeID === storeNumber)
+            console.log(storeID)
+            console.log(storeID.images.icon)
+            
 
             //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
             const title = ((info || {}).title)
@@ -325,12 +331,18 @@ async function wishlistGamesToDOM() {
             const spanBestPrice = document.createElement('span')
             spanBestPrice.className = 'best-price'
             spanBestPrice.textContent = `Best Price ${deals}`
+            const spanStoreName = document.createElement('span')
+            spanStoreName.className = 'store-name'
+            spanStoreName.textContent = `Online Store: ${storeID.storeName}`
+            const storeImg = document.createElement('img')
+            storeImg.className = 'store-banner'
+            storeImg.src = `https://www.cheapshark.com${storeID.images.banner}`
             const btn = document.createElement('button')
             btn.className = 'wishlist-delete-btn'
             btn.textContent = 'Delete'
             btn.id = id
             ul.appendChild(li)
-            li.append(h4, img, spanBestPrice, btn)
+            li.append(h4, img, spanBestPrice, spanStoreName, storeImg, btn)
         }
         fetchGameId()
     })
@@ -338,6 +350,10 @@ async function wishlistGamesToDOM() {
 
 }
 
+async function fetchStoreImg(imgurl){
+    const imgFetch = await fetch(`https://www.cheapshark.com/${imgurl}`)
+    const image = await imgFetch.json()
+}
 
 
 
