@@ -289,10 +289,6 @@ async function wishlistGamesToDOM() {
     // console.log(storeData)
     // const bestPrice = 
 
-
-    //I need to pull the best price for today from the api and append to dom under image
-
-
     const div = document.createElement('div')
     div.id = 'wishlist-games'
     wishlist().appendChild(div)
@@ -301,42 +297,51 @@ async function wishlistGamesToDOM() {
     div.appendChild(ul)
 
     const [firstElement, ...restArray] = wishlistData
-
     // console.log(restArray)
     restArray.map(g => {
         let info = g.info
+        const gamesID = g.id
+        console.log(gamesID)
+
+        async function fetchGameId() {
+            const gameSearchById = await fetch(`https://www.cheapshark.com/api/1.0/games?id=${gamesID}`)
+            const gameIDs = await gameSearchById.json()
+
+            let deals = gameIDs.deals[0].price
+
+            //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
+            const title = ((info || {}).title)
+            const thumb = ((info || {}).thumb)
+            const id = g.id
 
 
-
-
-        //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
-        const title = ((info || {}).title)
-        const thumb = ((info || {}).thumb)
-        const id = g.id
-
-
-        const li = document.createElement('li')
-        li.className = 'wishlist-container'
-        // li.textContent = `${title}`
-        const h4 = document.createElement('h4')
-        h4.textContent = `${title}`
-        const img = document.createElement('img')
-        img.className = 'wishlistGameImg'
-        img.src = thumb
-        const btn = document.createElement('button')
-        btn.className = 'wishlist-delete-btn'
-        btn.textContent = 'Delete'
-        btn.id = id
-        ul.appendChild(li)
-        li.append(h4, img, btn)
-
-
-
-
+            const li = document.createElement('li')
+            li.className = 'wishlist-container'
+            const h4 = document.createElement('h4')
+            h4.textContent = `${title}`
+            const img = document.createElement('img')
+            img.className = 'wishlistGameImg'
+            img.src = thumb
+            const spanBestPrice = document.createElement('span')
+            spanBestPrice.className = 'best-price'
+            spanBestPrice.textContent = `Best Price ${deals}`
+            const btn = document.createElement('button')
+            btn.className = 'wishlist-delete-btn'
+            btn.textContent = 'Delete'
+            btn.id = id
+            ul.appendChild(li)
+            li.append(h4, img, spanBestPrice, btn)
+        }
+        fetchGameId()
     })
 
 
 }
+
+
+
+
+
 
 
 
