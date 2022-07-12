@@ -122,6 +122,104 @@
           "savings": "96.000967"
         }
       ]
+    },
+    {
+      "id": "226963",
+      "info": {
+        "title": "XCOM: Ultimate Collection",
+        "steamAppID": null,
+        "thumb": "https://gamersgatep.imgix.net/f/a/d/67cf6dde8c1d76931886fedcb03d078ef775cdaf.jpg?auto=&w="
+      },
+      "cheapestPriceEver": {
+        "price": "11.91",
+        "date": 1617315938
+      },
+      "deals": [
+        {
+          "storeID": "23",
+          "dealID": "RdTbnfxjbPgSZJ%2Fi%2BibOa9cwLng0aGCcKUws2MdngN4%3D",
+          "price": "13.93",
+          "retailPrice": "148.99",
+          "savings": "90.650379"
+        },
+        {
+          "storeID": "3",
+          "dealID": "3OxqgIDTOwl6bHrwINy3te%2FjcHM5bu8%2BnKn2V7jmYHQ%3D",
+          "price": "14.42",
+          "retailPrice": "148.99",
+          "savings": "90.321498"
+        },
+        {
+          "storeID": "27",
+          "dealID": "lAqDcZqGvc04dh7BWd23tQiE4ctBQQkK1VQgBezv%2B4U%3D",
+          "price": "15.24",
+          "retailPrice": "148.99",
+          "savings": "89.771126"
+        },
+        {
+          "storeID": "30",
+          "dealID": "%2BW%2BnREJ4qoOhnjO8OGMloDPj7oYSaNWleohsb0P%2FC28%3D",
+          "price": "15.49",
+          "retailPrice": "148.99",
+          "savings": "89.603329"
+        },
+        {
+          "storeID": "15",
+          "dealID": "xGeAL8yNY1U%2Fv8a2g49RMF%2Fc%2FeWnSs1zpmzUI886UtA%3D",
+          "price": "15.64",
+          "retailPrice": "148.99",
+          "savings": "89.502651"
+        },
+        {
+          "storeID": "32",
+          "dealID": "mZdCqqXPQz61iQsXRzMdz1gWi0ql3NDjc%2BqqnN449Cw%3D",
+          "price": "15.94",
+          "retailPrice": "148.99",
+          "savings": "89.301295"
+        },
+        {
+          "storeID": "2",
+          "dealID": "K8MuyoY9S4bJ0tKsJ4TsP8rl%2BNchrfkQmsiC8371AYc%3D",
+          "price": "16.38",
+          "retailPrice": "148.99",
+          "savings": "89.005974"
+        },
+        {
+          "storeID": "21",
+          "dealID": "dfgm7ZmRGyYKrbaqm6CC%2Fl%2F6Z1ZfJSvdHUQyy1AY0pk%3D",
+          "price": "128.99",
+          "retailPrice": "148.88",
+          "savings": "13.359753"
+        },
+        {
+          "storeID": "11",
+          "dealID": "EqJkkYC8Ibuh7UWkMABck1ZWEMOEgWBP9uyHhh2sj7o%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "24",
+          "dealID": "mHKfC39DtOU6X2kThGirctuzpSCWGE6TiMslHs%2BF930%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "28",
+          "dealID": "469MKhczdRGPJEj4tQKjUVyslNdT87wnhgiPljfTYp4%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        },
+        {
+          "storeID": "29",
+          "dealID": "TechRbygfmZAt2odqPS4FYEt2%2FDqDWSgUphGqeUNsBQ%3D",
+          "price": "148.99",
+          "retailPrice": "148.99",
+          "savings": "0.000000"
+        }
+      ]
     }
   ]
 }

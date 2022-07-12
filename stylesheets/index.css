@@ -12,7 +12,6 @@ h4 {
     font-size: 1.25rem;
     font-family: ' Montserrat';
     font-weight: bold;
-
 }
 
 button {
@@ -40,9 +39,7 @@ span {
 
 .homeLink {
     font-family: "Roboto Mono";
-
 }
-
 
 .home-search {
     text-align: right !important;
@@ -74,7 +71,6 @@ span {
 
 }
 
-
 #home-games {
     display: flex;
     align-items: center;
@@ -95,11 +91,7 @@ span {
     margin-right: 4%;
     min-width: 0;
     gap: 30px;
-
-
-
 }
-
 
 .game-container {
     display: flex;
@@ -111,7 +103,6 @@ span {
     align-items: flex-start;
     color: white;
     justify-content: center;
-
 }
 
 .homeGameImg {
@@ -126,13 +117,6 @@ span {
     color: #00d659;
 }
 
-/* #wishlist-games {
-    display: block;
-} */
-
-/* .center-align {
-    padding-bottom: 7%;
-} */
 #wishlist-grid {
     display: inline-flex;
     flex-direction: row;
@@ -141,10 +125,6 @@ span {
 
     margin-left: 4.5%;
     align-items: flex-end;
-
-
-    /* height: 50vh; */
-
 }
 
 .wishlist-container {
@@ -157,15 +137,11 @@ span {
     height: auto;
     color: white;
     align-items: center;
-
-    /* display: inline-block; */
-
 }
 
 .store-banner {
     height: 30px;
-    width: 50%;
-
+    width: 70%;
 }
 
 .best-price {
@@ -188,10 +164,4 @@ span {
 
     color: white;
     padding-bottom: 2px;
-}
-
-
-
-span {
-    object-fit: contain;
 }

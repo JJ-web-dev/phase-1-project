@@ -24,7 +24,6 @@ function wishlistLink() {
 //changes mouse pointer to a 'finger' pointer
 //should make this with a peram for all btns***
 function mousePointerChange() {
-
     const mouseOver = document.querySelectorAll('.add-to-wishlist')
 
     mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
@@ -43,21 +42,14 @@ function gameContainerHover(container) {
 
     const mouseOver = document.querySelectorAll(container)
 
-
     mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
         e.target.style.filter = 'drop-shadow(0 0 .8rem #00d659)'
-
-
     }))
     const mouseOut = document.querySelectorAll(container)
     mouseOut.forEach(item => item.addEventListener('mouseout', function (e) {
         e.target.style.filter = 'none'
-
-
     }))
 }
-
-
 /**Node Getters */
 let main = () => document.getElementById('main')
 let shoppingCart = () => document.getElementById('shopping-cart')
@@ -73,7 +65,6 @@ const divReset = () => {
     cart().innerHTML = ''
     wishlist().innerHTML = ''
 }
-
 //Home screen load 
 //Adds initial deal rated games to DOM with fetchOnSaleGames
 //SearchGames creates the search bar
@@ -91,7 +82,6 @@ function loadHome() {
     setTimeout(mousePointerChange, 2000)
     setTimeout(gameContainerHover, 2000, '.game-container')
 }
-
 
 function loadShoppingCart() {
     divReset()
@@ -114,9 +104,6 @@ function loadWishList() {
     setTimeout(deleteWishlistGame, 500)
 
 }
-
-
-
 /**Fetch Functions */
 /**Fetch the games on sale from api which are used on homepage
 -Games come in from api with duplicates - duplicates pulled out with filterUniqueGames
@@ -151,9 +138,6 @@ function filterGameDeals(game) {
     })
     return gameDeal
 }
-
-
-
 //Search bar for games on homepage
 function searchGames() {
     const div = document.createElement('div')
@@ -255,7 +239,7 @@ function postWishlistGame() {
 }
 
 //This function deletes games from the wishlist page and json server
-//clears entire parentElement when clicked
+//Clears entire parentElement when clicked
 function deleteWishlistGame() {
     const deleteBtn = document.querySelectorAll('.wishlist-delete-btn')
 
@@ -285,12 +269,7 @@ async function wishlistGamesToDOM() {
 
     const apiResponse = await fetch('https://www.cheapshark.com/api/1.0/stores')
     const storeData = await apiResponse.json()
-    // console.log(storeData)
-    // storeData.map(id => {
-    // const storeID = id.storeID
-    // console.log(storeData)
-    // const bestPrice = 
-
+    
     const div = document.createElement('div')
     div.id = 'wishlist-games'
     wishlist().appendChild(div)
@@ -311,11 +290,13 @@ async function wishlistGamesToDOM() {
             console.log(gameIDs)
             let deals = gameIDs.deals[0].price
             let storeNumber = gameIDs.deals[0].storeID
+            let storedealID = gameIDs.deals[0].dealID
             let historicalLow = gameIDs.cheapestPriceEver.price
-            console.log(historicalLow)
+            console.log(storedealID)
+            // console.log(historicalLow)
             const storeID = storeData.find(item => item.storeID === storeNumber)
-            console.log(storeID)
-            console.log(storeID.images.icon)
+            // console.log(storeID)
+            // console.log(storeID.images.icon)
 
 
             //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
@@ -340,6 +321,9 @@ async function wishlistGamesToDOM() {
             const spanStoreName = document.createElement('span')
             spanStoreName.className = 'store-name'
             spanStoreName.textContent = `Online Store: ${storeID.storeName}`
+            const aRedirectToPurchase = document.createElement('a')
+            aRedirectToPurchase.href = `https://www.cheapshark.com/redirect?dealID=${storedealID}`
+            aRedirectToPurchase.className = 'store-banner'
             const storeImg = document.createElement('img')
             storeImg.className = 'store-banner'
             storeImg.src = `https://www.cheapshark.com${storeID.images.banner}`
@@ -348,13 +332,14 @@ async function wishlistGamesToDOM() {
             btn.textContent = 'Remove'
             btn.id = id
             ul.appendChild(li)
-            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, btn)
+            aRedirectToPurchase.appendChild(storeImg)
+            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, aRedirectToPurchase, btn)
         }
         fetchGameId()
     })
 }
 
-// filters the onSaleGames so no repeat games are rendered
+//Filters the onSaleGames so no repeat games are rendered
 function filterUniqueGames(data) {
     const uniqueId = new Set()
     const uniqueGames = data.filter(game => {
@@ -366,11 +351,10 @@ function filterUniqueGames(data) {
         }
         return false
     });
-
     return uniqueGames
 }
 
-//adds games to the homepage DOM
+//Adds games to the homepage DOM
 function gameOnDom(uniqueGames) {
 
     const div = document.createElement('div')
@@ -404,7 +388,5 @@ function gameOnDom(uniqueGames) {
         addWishlist.textContent = 'Add Wishlist'
         ul.appendChild(li)
         li.append(h4, img, spanNormalPrice, spanSalePrice, shoppingCartBtn, addWishlist)
-
-
     })
 }
