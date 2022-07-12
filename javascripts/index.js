@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', function () {
     loadHome()
     homeLink()
-    shoppingCartLink()
     wishlistLink()
 
 
@@ -11,10 +10,6 @@ function homeLink() {
     const homeLink = document.querySelector('.home-link')
     homeLink.addEventListener('click', loadHome)
 
-}
-
-function shoppingCartLink() {
-    shoppingCart().addEventListener('click', loadShoppingCart)
 }
 
 function wishlistLink() {
@@ -50,9 +45,15 @@ function gameContainerHover(container) {
         e.target.style.filter = 'none'
     }))
 }
+
+function purchaseWindow(storedealID){
+    const purchase = document.querySelectorAll('.purchase')
+    purchase.forEach(item => item.addEventListener('click', e => {
+       window.open(`https://www.cheapshark.com/redirect?dealID=${storedealID}`)
+    }))
+}
 /**Node Getters */
 let main = () => document.getElementById('main')
-let shoppingCart = () => document.getElementById('shopping-cart')
 let cart = () => document.getElementById('cart')
 let wishlist = () => document.getElementById('wishlist')
 let homeGames = () => document.getElementById('home-games')
@@ -62,7 +63,6 @@ let homeGames = () => document.getElementById('home-games')
 /**Resets all divs on navigation */
 const divReset = () => {
     main().innerHTML = ''
-    cart().innerHTML = ''
     wishlist().innerHTML = ''
 }
 //Home screen load 
@@ -82,23 +82,21 @@ function loadHome() {
     setTimeout(mousePointerChange, 2000)
     setTimeout(gameContainerHover, 2000, '.game-container')
 }
-
-function loadShoppingCart() {
-    divReset()
-    let h1 = document.createElement('h1')
-    h1.textContent = "Your Cart"
-    h1.className = 'center-align'
-    cart().appendChild(h1)
-}
 //Loads the wishlist page
 //green hover effect from gameContainerHover
 //deletWishlistGame deletes games from wishlist when button clicked
 function loadWishList() {
     divReset()
-    let h1 = document.createElement('h1')
-    h1.textContent = 'WishList'
+    const div = document.createElement('div')
+    div.className = 'wish-list-div'
+    const h1 = document.createElement('h1')
+    h1.textContent = 'Wish List'
     h1.className = 'center-align'
-    wishlist().appendChild(h1)
+    const span = document.createElement('span')
+    span.className = 'text-under-search'
+    span.textContent = 'Click On The Game Website Banner Below The Game Price To Be Redirected To Purchase Game'
+    wishlist().appendChild(div)
+    div.append(h1, span)
     wishlistGamesToDOM()
     setTimeout(gameContainerHover, 1000, '.wishlist-container')
     setTimeout(deleteWishlistGame, 500)
@@ -119,11 +117,13 @@ async function fetchOnSaleGames() {
     })
 
     const games = await filterUniqueGames(filteredBrokenData)
-
+    
     const filterGames = filterGameDeals(games)
-
     gameOnDom(filterGames)
-
+    filterGames.map(item => {
+        const deal = item.dealID
+        setTimeout(purchaseWindow, 800, deal)
+    })
 }
 
 //This function is used to filter games by a particular game deal rating 1-10, with 10 being the top rated deal
@@ -193,7 +193,6 @@ function searchAndLoadHome() {
             })
     })
 }
-
 //Posts game with .add-to-wishlist button
 //initial POST is the gameID which is not present in data when fetch by gameID is done / to carry over ID-
 //gameID is posted as the id in json / fetch to api with gameID is iniated and gameID data is patched using gameID
@@ -258,7 +257,6 @@ function deleteWishlistGame() {
         })
     }))
 }
-
 //fetch(1) games that were added to json wishlist on wishlist page
 //fetch(2) store data which includes banners and logos
 //fetch(3) gets cheapest game price data by gameID and the historical low on game price - fetch of api should occur on every load- 
@@ -266,7 +264,7 @@ function deleteWishlistGame() {
 async function wishlistGamesToDOM() {
     const response = await fetch('http://localhost:3000/posts')
     const wishlistData = await response.json()
-
+      
     const apiResponse = await fetch('https://www.cheapshark.com/api/1.0/stores')
     const storeData = await apiResponse.json()
     
@@ -278,28 +276,23 @@ async function wishlistGamesToDOM() {
     div.appendChild(ul)
 
     const [firstElement, ...restArray] = wishlistData
-    // console.log(restArray)
+    
     restArray.map(g => {
         let info = g.info
         const gamesID = g.id
-        // console.log(gamesID)
+    
 
         async function fetchGameId() {
             const gameSearchById = await fetch(`https://www.cheapshark.com/api/1.0/games?id=${gamesID}`)
             const gameIDs = await gameSearchById.json()
-            console.log(gameIDs)
-            let deals = gameIDs.deals[0].price
-            let storeNumber = gameIDs.deals[0].storeID
-            let storedealID = gameIDs.deals[0].dealID
+
+            const deals = gameIDs.deals[0].price
+            const storeNumber = gameIDs.deals[0].storeID
+            const storedealID = gameIDs.deals[0].dealID
             let historicalLow = gameIDs.cheapestPriceEver.price
-            console.log(storedealID)
-            // console.log(historicalLow)
             const storeID = storeData.find(item => item.storeID === storeNumber)
-            // console.log(storeID)
-            // console.log(storeID.images.icon)
-
-
-            //was geting undefined to access nested object - this accesses next leve key from existing object or empty object
+            
+            //was geting undefined to access nested object - this accesses next leve key from existing object or creates empty object to use
             const title = ((info || {}).title)
             const thumb = ((info || {}).thumb)
             const id = g.id
@@ -321,9 +314,9 @@ async function wishlistGamesToDOM() {
             const spanStoreName = document.createElement('span')
             spanStoreName.className = 'store-name'
             spanStoreName.textContent = `Online Store: ${storeID.storeName}`
-            const aRedirectToPurchase = document.createElement('a')
-            aRedirectToPurchase.href = `https://www.cheapshark.com/redirect?dealID=${storedealID}`
-            aRedirectToPurchase.className = 'store-banner'
+            const purchaseBtn = document.createElement('button')
+            purchaseBtn.className = 'purchase'
+            purchaseBtn.textContent = 'Purchase'
             const storeImg = document.createElement('img')
             storeImg.className = 'store-banner'
             storeImg.src = `https://www.cheapshark.com${storeID.images.banner}`
@@ -332,8 +325,9 @@ async function wishlistGamesToDOM() {
             btn.textContent = 'Remove'
             btn.id = id
             ul.appendChild(li)
-            aRedirectToPurchase.appendChild(storeImg)
-            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, aRedirectToPurchase, btn)
+            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, purchaseBtn, btn)
+            setTimeout(purchaseWindow, 800, storedealID)
+             
         }
         fetchGameId()
     })
@@ -378,15 +372,15 @@ function gameOnDom(uniqueGames) {
         const img = document.createElement('img')
         img.className = 'homeGameImg'
         img.src = g.thumb
-        const shoppingCartBtn = document.createElement('button')
-        shoppingCartBtn.className = 'add-to-shopping-cart'
-        shoppingCartBtn.id = g.gameID
-        shoppingCartBtn.textContent = 'Add to Cart'
+        const purchaseBtn = document.createElement('button')
+        purchaseBtn.className = 'purchase'
+        purchaseBtn.id = g.gameID
+        purchaseBtn.textContent = 'Purchase'
         const addWishlist = document.createElement('button')
         addWishlist.className = 'add-to-wishlist'
         addWishlist.id = g.gameID
         addWishlist.textContent = 'Add Wishlist'
         ul.appendChild(li)
-        li.append(h4, img, spanNormalPrice, spanSalePrice, shoppingCartBtn, addWishlist)
+        li.append(h4, img, spanNormalPrice, spanSalePrice, purchaseBtn, addWishlist)
     })
 }
