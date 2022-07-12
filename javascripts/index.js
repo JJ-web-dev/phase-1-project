@@ -46,10 +46,11 @@ function gameContainerHover(container) {
     }))
 }
 
-function purchaseWindow(storedealID){
+function purchaseWindow(){
     const purchase = document.querySelectorAll('.purchase')
     purchase.forEach(item => item.addEventListener('click', e => {
-       window.open(`https://www.cheapshark.com/redirect?dealID=${storedealID}`)
+       const dealID = e.target.id
+        window.open(`https://www.cheapshark.com/redirect?dealID=${dealID}`)
     }))
 }
 /**Node Getters */
@@ -81,6 +82,7 @@ function loadHome() {
     setTimeout(postWishlistGame, 2000)
     setTimeout(mousePointerChange, 2000)
     setTimeout(gameContainerHover, 2000, '.game-container')
+    setTimeout(purchaseWindow, 1000)
 }
 //Loads the wishlist page
 //green hover effect from gameContainerHover
@@ -99,7 +101,8 @@ function loadWishList() {
     div.append(h1, span)
     wishlistGamesToDOM()
     setTimeout(gameContainerHover, 1000, '.wishlist-container')
-    setTimeout(deleteWishlistGame, 500)
+    setTimeout(deleteWishlistGame, 800)
+    setTimeout(purchaseWindow, 1000)
 
 }
 /**Fetch Functions */
@@ -112,6 +115,7 @@ sets games based on rating to be rendered pn home
 async function fetchOnSaleGames() {
     const response = await fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
     const data = await response.json()
+        .catch(error => console.log(error))
     const filteredBrokenData = data.filter(item => {
         return item.gameID !== '223187'
     })
@@ -120,10 +124,7 @@ async function fetchOnSaleGames() {
     
     const filterGames = filterGameDeals(games)
     gameOnDom(filterGames)
-    filterGames.map(item => {
-        const deal = item.dealID
-        setTimeout(purchaseWindow, 800, deal)
-    })
+    
 }
 
 //This function is used to filter games by a particular game deal rating 1-10, with 10 being the top rated deal
@@ -189,7 +190,8 @@ function searchAndLoadHome() {
                 searchArea.value = ''
                 setTimeout(postWishlistGame, 1000)
                 setTimeout(mousePointerChange, 1500)
-                setTimeout(gameContainerHover, 1000)
+                setTimeout(gameContainerHover, 800, '.game-container')
+                setTimeout(purchaseWindow, 1000)
             })
     })
 }
@@ -245,7 +247,7 @@ function deleteWishlistGame() {
     deleteBtn.forEach(item => item.addEventListener('click', e => {
 
         const wishlistGameDelete = e.target.id
-
+        console.log(e.target)
         const parentElement = e.target.parentElement
         parentElement.innerHTML = ''
 
@@ -264,7 +266,7 @@ function deleteWishlistGame() {
 async function wishlistGamesToDOM() {
     const response = await fetch('http://localhost:3000/posts')
     const wishlistData = await response.json()
-      
+      .catch(error => console.log(error))
     const apiResponse = await fetch('https://www.cheapshark.com/api/1.0/stores')
     const storeData = await apiResponse.json()
     
@@ -274,7 +276,7 @@ async function wishlistGamesToDOM() {
     const ul = document.createElement('ul')
     ul.id = 'wishlist-grid'
     div.appendChild(ul)
-
+    //Removing the first object which contains no game data from json.db
     const [firstElement, ...restArray] = wishlistData
     
     restArray.map(g => {
@@ -316,20 +318,21 @@ async function wishlistGamesToDOM() {
             spanStoreName.textContent = `Online Store: ${storeID.storeName}`
             const purchaseBtn = document.createElement('button')
             purchaseBtn.className = 'purchase'
+            purchaseBtn.id = storedealID
             purchaseBtn.textContent = 'Purchase'
             const storeImg = document.createElement('img')
             storeImg.className = 'store-banner'
             storeImg.src = `https://www.cheapshark.com${storeID.images.banner}`
-            const btn = document.createElement('button')
-            btn.className = 'wishlist-delete-btn'
-            btn.textContent = 'Remove'
-            btn.id = id
+            const deletebtn = document.createElement('button')
+            deletebtn.className = 'wishlist-delete-btn'
+            deletebtn.textContent = 'Remove'
+            deletebtn.id = id
             ul.appendChild(li)
-            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, purchaseBtn, btn)
-            setTimeout(purchaseWindow, 800, storedealID)
+            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, purchaseBtn, deletebtn)
+            // setTimeout(purchaseWindow, 800, storedealID)
              
         }
-        fetchGameId()
+       fetchGameId()      
     })
 }
 
@@ -359,7 +362,7 @@ function gameOnDom(uniqueGames) {
     div.appendChild(ul)
 
     uniqueGames.map(g => {
-
+       
         const li = document.createElement('li')
         li.className = 'game-container'
         const h4 = document.createElement('h4')
@@ -374,7 +377,7 @@ function gameOnDom(uniqueGames) {
         img.src = g.thumb
         const purchaseBtn = document.createElement('button')
         purchaseBtn.className = 'purchase'
-        purchaseBtn.id = g.gameID
+        purchaseBtn.id = g.dealID
         purchaseBtn.textContent = 'Purchase'
         const addWishlist = document.createElement('button')
         addWishlist.className = 'add-to-wishlist'
