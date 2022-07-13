@@ -30,7 +30,7 @@ This is a webiste that locates the best deals on video games from many major onl
 
 ### Screenshots of Website
 
-* https://github.com/JJ-web-dev/phase-1-project/issues/1#issue-1303791813
+https://github.com/JJ-web-dev/phase-1-project/issues/1#issue-1303791813
 
 
 ### Support
