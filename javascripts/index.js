@@ -13,8 +13,7 @@ function wishlistLink() {
     const wishlistLink = document.querySelector('.wishlist')
     wishlistLink.addEventListener('click', loadWishList)
 }
-//changes mouse pointer to a 'finger' pointer
-//should make this with a peram for all btns***
+//Changes mouse pointer to a 'finger' pointer
 function mousePointerChange() {
     const mouseOver = document.querySelectorAll('button')
 
@@ -52,7 +51,6 @@ let main = () => document.getElementById('main')
 let cart = () => document.getElementById('cart')
 let wishlist = () => document.getElementById('wishlist')
 let homeGames = () => document.getElementById('home-games')
-
 
 /**Navbar Functions */
 /**Resets all divs on navigation */
@@ -158,9 +156,9 @@ function searchGames() {
     form.append(searchBar, input)
 
 }
-//search bar - searches by title through fetch after submit
-//runs the games through the filter function and those values are passed into gameOnDOM function
-//post to wishlist functionality is present after search with postWishlistGame function
+//Search bar - searches by title through fetch after submit
+//Runs the games through the filter function (pulls out duplicates) and those values are passed into gameOnDOM function
+//Post to wishlist functionality is present after search with postWishlistGame function
 function searchAndLoadHome() {
 
     document.querySelector('form').addEventListener('submit', e => {
@@ -190,8 +188,8 @@ function searchAndLoadHome() {
     })
 }
 //Posts game with .add-to-wishlist button
-//initial POST is the gameID which is not present in data when fetch by gameID is done / to carry over ID-
-//gameID is posted as the id in json / fetch to api with gameID is iniated and gameID data is patched using gameID
+//Initial POST is the gameID which is not present in data when fetch by gameID is done / to carry over ID-
+//GameID is posted as the id in json / fetch to api with gameID is iniated and gameID data is patched using gameID
 function postWishlistGame() {
 
     const addWishListEvent = document.querySelectorAll('.add-to-wishlist')
