@@ -17,3 +17,10 @@ This is a webiste to locate the best deals on video games from major online reta
 ### API Information
 * The data used for this project came from the api: https://apidocs.cheapshark.com/
 * Purchase link on each section was created with redirect through cheapshark in accordance with use of their api.
+
+### Attribution
+* Oliver Steele's nested object acess pattern:
+    -Accessing nested object that returns undefined (title) - this pattern should always return the nested object
+```
+        const title = ((info || {}).title)
+```

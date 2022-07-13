@@ -2,8 +2,6 @@ document.addEventListener('DOMContentLoaded', function () {
     loadHome()
     homeLink()
     wishlistLink()
-
-
 })
 /** Event Listeners */
 function homeLink() {
@@ -11,26 +9,21 @@ function homeLink() {
     homeLink.addEventListener('click', loadHome)
 
 }
-
 function wishlistLink() {
     const wishlistLink = document.querySelector('.wishlist')
     wishlistLink.addEventListener('click', loadWishList)
 }
-
 //changes mouse pointer to a 'finger' pointer
 //should make this with a peram for all btns***
 function mousePointerChange() {
-    const mouseOver = document.querySelectorAll('.add-to-wishlist')
+    const mouseOver = document.querySelectorAll('button')
 
     mouseOver.forEach(item => item.addEventListener('mouseover', function (e) {
         e.target.style.cursor = 'pointer'
-
     }))
-    const mouseOut = document.querySelectorAll('.add-to-wishlist')
+    const mouseOut = document.querySelectorAll('button')
     mouseOut.forEach(item => item.addEventListener('mouseout', function (e) {
         e.target.style.cursor = 'default'
-
-
     }))
 }
 //Green hover effect on game containers
@@ -97,7 +90,7 @@ function loadWishList() {
     h1.className = 'center-align'
     const span = document.createElement('span')
     span.className = 'text-under-search'
-    span.textContent = 'Click On The Game Website Banner Below The Game Price To Be Redirected To Purchase Game'
+    span.textContent = 'Click On Purchase To Be Redirected To Purchase Game'
     wishlist().appendChild(div)
     div.append(h1, span)
     wishlistGamesToDOM()
@@ -181,7 +174,6 @@ function searchAndLoadHome() {
 
         const searchTerms = e.target[0].value
 
-
         fetch(`https://www.cheapshark.com/api/1.0/deals?title=${searchTerms}`)
             .then(response => response.json())
             .then(response => {
@@ -239,7 +231,6 @@ function postWishlistGame() {
             })
     }))
 }
-
 //This function deletes games from the wishlist page and json server
 //Clears entire parentElement when clicked
 function deleteWishlistGame() {
@@ -300,7 +291,6 @@ async function wishlistGamesToDOM() {
             const thumb = ((info || {}).thumb)
             const id = g.id
 
-
             const li = document.createElement('li')
             li.className = 'wishlist-container'
             const h4 = document.createElement('h4')
@@ -329,15 +319,11 @@ async function wishlistGamesToDOM() {
             deletebtn.textContent = 'Remove'
             deletebtn.id = id
             ul.appendChild(li)
-            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, purchaseBtn, deletebtn)
-           
-             
+            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, purchaseBtn, deletebtn)                     
         }
        fetchGameId()      
     })
 }
-
-
 //Filters the onSaleGames so no repeat games are rendered
 function filterUniqueGames(data) {
     const uniqueId = new Set()
@@ -352,7 +338,6 @@ function filterUniqueGames(data) {
     });
     return uniqueGames
 }
-
 //Adds games to the homepage DOM
 function gameOnDom(uniqueGames) {
 
