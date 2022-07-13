@@ -16,6 +16,7 @@ function wishlistLink() {
     const wishlistLink = document.querySelector('.wishlist')
     wishlistLink.addEventListener('click', loadWishList)
 }
+
 //changes mouse pointer to a 'finger' pointer
 //should make this with a peram for all btns***
 function mousePointerChange() {
@@ -172,7 +173,7 @@ function searchAndLoadHome() {
         e.preventDefault()
         const homeGames = document.getElementById('home-games')
         homeGames.innerHTML = ''
-        //using .remove to remove the previous searched games
+        //Using .remove to remove the previous searched games
         homeGames.remove()
         const searchArea = document.querySelector('.title-input')
         const h1 = document.querySelector('h1')
@@ -329,12 +330,13 @@ async function wishlistGamesToDOM() {
             deletebtn.id = id
             ul.appendChild(li)
             li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, purchaseBtn, deletebtn)
-            // setTimeout(purchaseWindow, 800, storedealID)
+           
              
         }
        fetchGameId()      
     })
 }
+
 
 //Filters the onSaleGames so no repeat games are rendered
 function filterUniqueGames(data) {

@@ -1,5 +1,6 @@
 body {
     background-color: #000;
+    font-family: 'Roboto';
 }
 
 h1 {
@@ -17,12 +18,14 @@ h4 {
 
 button {
     width: 100%;
-    background: linear-gradient(to left, #4b73c3, #7f9ed3, #376edd);
+    background: linear-gradient(to left, #1149ff, #7091ff, #1149ff);
+    color: white;
+   
 }
 
 span {
     font-size: 14px;
-    font-family: ' Montserrat';
+    font-family: 'Montserrat';
 }
 
 .nav-color {
@@ -143,6 +146,11 @@ span {
     height: auto;
     color: white;
     align-items: center;
+}
+
+.wishlistGameImg {
+    height: 180px;
+    width: 125px;
 }
 
 .store-banner {
