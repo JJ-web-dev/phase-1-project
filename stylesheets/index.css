@@ -154,7 +154,7 @@ span {
     height: 300px;
     height: auto;
     color: white;
-    align-items: center;
+    justify-content: center;
 }
 
 .wishlistGameImg {

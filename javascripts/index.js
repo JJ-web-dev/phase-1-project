@@ -97,6 +97,7 @@ function loadWishList() {
     setTimeout(gameContainerHover, 1000, '.wishlist-container')
     setTimeout(deleteWishlistGame, 800)
     setTimeout(purchaseWindow, 1000)
+    setTimeout(mousePointerChange, 2000)
 
 }
 /**Fetch Functions */

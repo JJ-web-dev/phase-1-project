@@ -206,6 +206,34 @@
           "savings": "0.000000"
         }
       ]
+    },
+    {
+      "id": "198564",
+      "info": {
+        "title": "Far Cry 5 and Far Cry New Dawn Deluxe Edition Bundle (Complete Edition)",
+        "steamAppID": null,
+        "thumb": "https://gamersgatep.imgix.net/4/5/f/6cfd2d01241c09d89b16c05303e547b58b206f54.jpg?auto=&w="
+      },
+      "cheapestPriceEver": {
+        "price": "16.78",
+        "date": 1615820240
+      },
+      "deals": [
+        {
+          "storeID": "23",
+          "dealID": "QDmsK%2BmiTJm5LcRDGRCdUvEdEdLaNqMPyxsdeRsoVwE%3D",
+          "price": "17.98",
+          "retailPrice": "99.99",
+          "savings": "82.018202"
+        },
+        {
+          "storeID": "2",
+          "dealID": "pgoBUJ1F48c5MeAobSDytVejPBFakmXgsbHlsHFqr6s%3D",
+          "price": "18.19",
+          "retailPrice": "99.99",
+          "savings": "81.808181"
+        }
+      ]
     }
   ]
 }
