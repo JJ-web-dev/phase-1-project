@@ -105,26 +105,28 @@ function loadWishList() {
 sets games based on rating to be rendered pn home
 -The games are rendered on homepage with function gameOnDom
 */
-async function fetchOnSaleGames() {
-    const response = await fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
-    const data = await response.json()
-        .catch(error => console.log(error))
+function fetchOnSaleGames() {
+    fetch('https://www.cheapshark.com/api/1.0/deals?onSale')
+    .then(response => response.json())
+    .then(response => {
+    const data = response
+        
     const filteredBrokenData = data.filter(item => {
         return item.gameID !== '223187'
     })
 
-    const games = await filterUniqueGames(filteredBrokenData)
+    const games = filterUniqueGames(filteredBrokenData)
     
     const filterGames = filterGameDeals(games)
     gameOnDom(filterGames)
-    
+})
 }
 
 //This function is used to filter games by a particular game deal rating 1-10, with 10 being the top rated deal
 //This is set by dev but could be placed in drop down to let User select which rating to be displayed
 function filterGameDeals(game) {
     let gameDeal = []
-    game.map(games => {
+    game.forEach(games => {
         if (games.dealRating >= 9.5) {
 
             gameDeal.push(games)
@@ -254,12 +256,18 @@ function deleteWishlistGame() {
 //fetch(2) store data which includes banners and logos
 //fetch(3) gets cheapest game price data by gameID and the historical low on game price - fetch of api should occur on every load- 
 //to give most recent data  
-async function wishlistGamesToDOM() {
-    const response = await fetch('http://localhost:3000/posts')
-    const wishlistData = await response.json()
-      .catch(error => console.log(error))
-    const apiResponse = await fetch('https://www.cheapshark.com/api/1.0/stores')
-    const storeData = await apiResponse.json()
+function wishlistGamesToDOM() {
+    fetch('http://localhost:3000/posts')
+    .then(response => response.json())
+    .then(response => {
+    const wishlistData = response
+    
+      
+   fetch('https://www.cheapshark.com/api/1.0/stores')
+   .then(response => response.json())
+    .then(response => {
+    const storeData = response
+   
     
     const div = document.createElement('div')
     div.id = 'wishlist-games'
@@ -275,9 +283,12 @@ async function wishlistGamesToDOM() {
         const gamesID = g.id
     
 
-        async function fetchGameId() {
-            const gameSearchById = await fetch(`https://www.cheapshark.com/api/1.0/games?id=${gamesID}`)
-            const gameIDs = await gameSearchById.json()
+       function fetchGameId() {
+            fetch(`https://www.cheapshark.com/api/1.0/games?id=${gamesID}`)
+            .then(response => response.json())
+            .then(response => {
+             const gameIDs = response
+            
 
             const deals = gameIDs.deals[0].price
             const storeNumber = gameIDs.deals[0].storeID
@@ -318,10 +329,17 @@ async function wishlistGamesToDOM() {
             deletebtn.textContent = 'Remove'
             deletebtn.id = id
             ul.appendChild(li)
-            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, purchaseBtn, deletebtn)                     
-        }
-       fetchGameId()      
+            li.append(h4, img, spanBestPrice, cheapestPriceEver, spanStoreName, storeImg, purchaseBtn, deletebtn) 
+              
+        })  
+                             
+    }
+    fetchGameId()
+})
+})
+             
     })
+  
 }
 //Filters the onSaleGames so no repeat games are rendered
 function filterUniqueGames(data) {
@@ -373,3 +391,8 @@ function gameOnDom(uniqueGames) {
         li.append(h4, img, spanNormalPrice, spanSalePrice, purchaseBtn, addWishlist)
     })
 }
+
+
+
+
+
